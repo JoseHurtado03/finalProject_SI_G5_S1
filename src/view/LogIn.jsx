@@ -17,10 +17,10 @@ export default function Login(){
         const nombre = partes[0]; // El primer elemento es el nombre
         const apellido = partes.slice(1).join(' '); // Los elementos restantes son el apellido
         return { nombre, apellido };
-      }
+    }
 
 
- 
+
 
 
     useEffect(()=>{

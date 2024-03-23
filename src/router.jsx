@@ -4,7 +4,7 @@ import MainPage from './view/PaginaPrincipal';
 import GroupPage from './view/PaginaGrupo';
 import Sign from './view/SignIn';
 import Login from "./view/LogIn"
-
+import PerfilUsuario from "./view/PerfilUsuario"
 
 export const router = createBrowserRouter([
     {
