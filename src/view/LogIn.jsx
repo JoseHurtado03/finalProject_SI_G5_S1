@@ -4,6 +4,7 @@ import {useUser} from "../context/user"
 import { useNavigate,Link } from "react-router-dom"
 
 import {createUser,buscarUsuarioPorId} from "../Controllers/usuario"
+import styles from '../CSS/Login.module.css'
 
 
 export default function Login(){
@@ -90,16 +91,23 @@ export default function Login(){
 
 
     return (
-    <div >
-
-        <h1 >Email</h1>
-        <input value={email} onChange={e =>  setEmail(e.target.value) }></input>
-        <h1 >Password</h1>
-        <input value={password} onChange={e =>  setPassword(e.target.value) }></input>
-        <button  onClick={ handleLogin}>LOGIN</button>
-        <button  onClick={handleLogingGoogle}>GOOGLE</button>
-        <button  onClick={handleBack}>Regresar</button> 
-        
-
+    <div style={{display: 'flex', flexDirection: 'row'}}>
+        <section className={styles.leftImg}></section>
+        <section style={{marginLeft:'300px'}}>
+            <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <h1 className={styles.mainTitle}>Inicio de Sesion</h1>
+                <button className={styles.homeButton}>Inicio</button>
+            </section>
+            <section>
+                <input value={email} onChange={e =>  setEmail(e.target.value) } placeholder="Correo Electronico" className={styles.input}></input>
+                <input value={password} onChange={e =>  setPassword(e.target.value) } placeholder="Contrasena" className={styles.input}></input>
+            </section>
+            <section>
+                <button  onClick={ handleLogin} className={styles.mainButton}>LogIn</button>
+                <button  onClick={handleLogingGoogle}>GOOGLE</button>
+                <button  onClick={handleBack}>Regresar</button>
+            </section> 
+            <h2>¿No te has registrado aún?</h2>
+        </section>
     </div>)
 }

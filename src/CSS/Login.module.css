@@ -1,0 +1,71 @@
+.mainTitle{
+    width: 306px;
+    height: 63px;
+    color: #000;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.input{
+    display: flex;
+    height: 50px;
+    width: 250px;
+    padding: 15px 205px 15px 43px;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #BCBCBC;
+
+    color: #BCBCBC;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.mainButton{
+    height: 50px;
+    display: flex;
+    padding: 9px 0px 0px 200px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #F6821F;
+    background: #F6821F;
+    box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 50px;
+
+    color: #FFF;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.leftImg{
+    width: 583px;
+    height: 710px;
+    background-image: url(https://www.unimet.edu.ve/wp-content/uploads/2023/08/FOTOS-CAMPUS-UNIMET-1030x687-1.jpg);
+}
+
+.homeButton{
+    width: 170px;
+    height: 41.366px;
+    border-radius: 10px;
+    background: #F6821F;
+    box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #000;
+    font-family: Inter;
+    font-size: 15.61px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 40px;
+}

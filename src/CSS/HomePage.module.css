@@ -1,0 +1,46 @@
+.mainTitle{
+    width: 1171px;
+    height: 250px;
+    color: #000;
+    text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Kdam Thmor";
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100px; /* 125% */
+}
+
+.subTitle{
+    width: 620px;
+    height: 250px;
+    color: #000;
+    text-align: right;
+    text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Kdam Thmor";
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100px; /* 125% */
+}
+
+.info{
+    width: 659px;
+    height: 217px;
+    color: #2E2828;
+    text-align: right;
+    font-family: "Average Sans";
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 200px;
+}
+
+.foto{
+    width: 575px;
+    height: 558px;
+    border-radius: 46px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-image: url(https://henriquecapriles.com/wp-content/uploads/2017/06/unimet-1080x675.jpg);
+    margin-top: 50px;
+}
