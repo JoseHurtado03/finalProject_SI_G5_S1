@@ -4,8 +4,7 @@ import styles from '../CSS/PerfilUsuario.module.css'
 import { useUser } from "../context/user";
 import { useState,useEffect } from 'react'
 import {getUsuario} from "../Controllers/usuario"
-
-
+import QuitGroup from '../Components/QuitGroup';
 
 export default function PerfilUsuario() {
   const user = useUser();
@@ -14,6 +13,7 @@ export default function PerfilUsuario() {
   const [Nombre,setNombre]= useState("")
   const [Apellido,setApellido]= useState("")
   const [email,setEmail]= useState("")
+  const [grupos,setGrupos]=useState()
 
   useEffect(()=>{
     if(user){
@@ -23,10 +23,11 @@ export default function PerfilUsuario() {
             
             const usuario= await getUsuario(user.email)
             
-            console.log(user)
+           
             setNombre(usuario.Nombre)
             setApellido(usuario.Apellido)
             setEmail(user.email)
+            setGrupos(usuario.subscripciones)
             
 
         }
@@ -70,11 +71,24 @@ export default function PerfilUsuario() {
           </section>
           <section>
             <h2>Afiliciones</h2>
-            <ul className={styles.afiliaciones}>
-              <li>[Afiliciacion]</li>
-              <li>[Afiliciacion2]</li>
-              <li>[Afiliciacion3]</li>
-            </ul>
+
+            
+            {grupos ? (
+                                
+                grupos.map((propa) => (
+                
+                <QuitGroup key={propa} id={propa} grupos={propa}></QuitGroup>
+                                                    
+                                                    
+                ))
+                                                
+                
+                ): ("Cargando")}
+
+
+           
+
+
           </section>
         </section>
       </div>

@@ -1,4 +1,4 @@
-import { addDoc, collection,getDoc,getDocs,doc, setDoc,query,where } from "firebase/firestore";
+import { addDoc, collection,getDoc,getDocs,doc, setDoc,query,where,updateDoc } from "firebase/firestore";
 import {db} from "../firebase"
 
 
@@ -44,21 +44,6 @@ export async function buscarUsuarioPorId(userId) {
 
 
 
-
-
-
-
-
-function generateId() {
-    const min = 0; 
-    const max = 9; 
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    return randomNumber.toString(); 
-}
-
-
-
-
 export async function updateCurrentUser(){
 
     const userCollection=collection(db,"Usuarios")
@@ -92,6 +77,30 @@ export async function buscarUsuario(correo,nombreg){
     
 }
 
+
+export async function subscribe(correo,idGrupo){
+
+  const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
+  const userRef = doc(db,"Usuarios",`${correo}`);
+
+  const usuario=userDoc.data()
+  
+  
+    
+    
+    const subscriptions=userDoc.data().subscripciones
+    
+    subscriptions.push(idGrupo)
+    
+
+    await updateDoc(userRef, {
+      subscripciones: subscriptions
+      });
+
+  
+}
+
+
 export async function getUsuario(correo){
 
       
@@ -119,11 +128,9 @@ async function getUser(email){
 //se puede hacer de una manera mejor
 export async function cambiarInfoUsuario(correo,Nombref,Apellidof,juegof){
 
-    const ususariosCollection=collection(db,"Usuarios")
-    const ususarioQuery= query(ususariosCollection,where("email","==" , correo))
-    const ususario = await getDocs(ususarioQuery)
-    
-    const us= ususario.docs[0].data();
+  const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
+
+  const usuario=userDoc.data()
     
     const Nombre=Nombref
     const Apellido=Apellidof
@@ -148,29 +155,24 @@ export async function cambiarInfoUsuario(correo,Nombref,Apellidof,juegof){
 
 export async function cambiarGrupo(correo,grupo){
 
-    const ususariosCollection=collection(db,"Usuarios")
-    const ususarioQuery= query(ususariosCollection,where("email","==" , correo))
-    const ususario = await getDocs(ususarioQuery)
+    const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
+    const userRef = doc(db,"Usuarios",`${correo}`);
+    const usuario=userDoc.data()
     
-    const us= ususario.docs[0].data();
-    
-    const Nombre=us.Nombre
-    const Apellido=us.Apellido
-    const UserName=us.UserName
-    const email=us.email
-    const password=us.password
-    const grupos=grupo
     
 
-    const data={Nombre,Apellido,UserName,email,grupos,password}
 
     
 
-    const ref = doc(ususariosCollection,correo);
-    
-    await setDoc(ref,data);
 
-
+  
     
+    
+    
+    
+
+    await updateDoc(userRef, {
+      subscripciones: grupo
+      });
 }
 

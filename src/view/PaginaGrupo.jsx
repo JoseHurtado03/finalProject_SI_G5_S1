@@ -6,6 +6,7 @@ import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
 import style from "../CSS/PaginaGrupo.module.css";
 import { useUser } from "../context/user";
+import {getUsuario,subscribe} from "../Controllers/usuario"
 
 function GroupPage() {
   const params = useParams();
@@ -16,6 +17,8 @@ function GroupPage() {
 
   const [Comentario, setComentario] = useState("");
 
+  const [subscrito,setSubscrito]=useState(false)
+
   const handleClick = () => {
     AgregarComentarioGrupo(params.id, {
       nombre: "Enrique Millan",
@@ -23,6 +26,38 @@ function GroupPage() {
     });
     setComentario("");
     Comentarios.push({ nombre: "Enrique Millan", comentario: Comentario });
+  };
+
+  useEffect(()=>{
+    if(user){
+
+        const uwu=async ()=>{
+           
+            
+            const usuario= await getUsuario(user.email)
+            
+            const gruposUsuario=usuario.subscripciones
+
+            if(gruposUsuario.includes(params.id)){
+                setSubscrito(true)
+            }
+           
+           
+
+        }
+        
+        uwu()
+    }
+
+}
+
+,[user])
+
+
+  const handleClickSubscribe = () => {
+    
+    subscribe(user.email,params.id)
+    setSubscrito(true)
   };
 
   const navigate = useNavigate();
@@ -34,7 +69,7 @@ function GroupPage() {
   }, [grupo]);
 
   return (
-    <div>
+    <>
       {grupo ? (
         <div>
           <h1>{params.id}</h1>
@@ -44,6 +79,13 @@ function GroupPage() {
       ) : (
         ""
       )}
+
+        {subscrito? (""):(<button onClick={handleClickSubscribe}>Subscribe</button>)}
+        
+        
+
+
+
       <div>
         <input
           value={Comentario}
@@ -63,7 +105,7 @@ function GroupPage() {
             : "Cargando"}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default GroupPage;
