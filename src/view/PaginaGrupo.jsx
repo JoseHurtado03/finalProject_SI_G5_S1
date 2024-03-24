@@ -5,10 +5,12 @@ import { AgregarComentarioGrupo } from "../Controllers/Groups";
 import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
 import style from "../CSS/PaginaGrupo.module.css";
+import { useUser } from "../context/user";
 
 function GroupPage() {
   const params = useParams();
   const grupo = useGrupo(params.id);
+  const user = useUser();
 
   const [Comentarios, setComentarios] = useState();
 

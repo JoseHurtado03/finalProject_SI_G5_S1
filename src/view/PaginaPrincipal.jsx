@@ -3,13 +3,20 @@ import GroupCard from '../Components/TarjetaGrupo'
 import useGrupos from '../CustomHooks/useGroups'
 import { buscarGrupo } from '../Controllers/Groups';
 import styles from '../CSS/HomePage.module.css'
+import Header from '../Components/Header';
+import { useUser } from "../context/user";
 
 function MainPage() {
     const grupos= useGrupos()
+    const user = useUser();
 
   return (
     <>
       <div>
+
+        <Header user={user}></Header>
+
+
         <section>
           <h1 className={styles.mainTitle}>¿Buscas formar parte de alguna agrupación estudiantil?</h1>
         </section>

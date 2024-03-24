@@ -94,33 +94,18 @@ export async function buscarUsuario(correo,nombreg){
 
 export async function getUsuario(correo){
 
-    //console.log(typeof(correo))
-    const ususariosCollection=collection(db,"Usuarios")
-    
-    const ususarioQuery= query(ususariosCollection,where("email","==" , correo))
-    
-   
-    const ususario = await getDocs(ususarioQuery)
-    
-    const us= ususario.docs[0].data();
-    
-    
+      
+  const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
 
-
-    const Nombre=us.Nombre
-    const Apellido=us.Apellido
-    const grupos=us.grupos
-    const juego=us.juego
-
-    
-    const data={Nombre,Apellido,grupos,juego}
-    console.log(data)
-    
-
-    return data
+  const usuario=userDoc.data()
+  
+  
+ 
+  return usuario
 
     
 }
+
 
 
 async function getUser(email){
@@ -131,7 +116,7 @@ async function getUser(email){
     return grupo
 }
 
-
+//se puede hacer de una manera mejor
 export async function cambiarInfoUsuario(correo,Nombref,Apellidof,juegof){
 
     const ususariosCollection=collection(db,"Usuarios")
