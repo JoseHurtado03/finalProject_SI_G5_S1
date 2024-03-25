@@ -8,7 +8,7 @@ import {
 } from "../Controllers/auth";
 import { useUser } from "../context/user";
 import { createUser } from "../Controllers/usuario";
-
+import styles from '../CSS/SignIn.module.css'
 
 
 export default function Sign() {
@@ -52,48 +52,50 @@ export default function Sign() {
   };
 
   return (
-    <div >
-      <h1 >Nombre</h1>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-       
-      ></input>
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+      <section style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: '100px'}}>
+        <h1 className={styles.mainTitle}>Registrarse</h1>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className={styles.input}
+          placeholder="Nombre"
+        ></input>
 
-      <h1 >Apellido</h1>
-      <input
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        
-      ></input>
+        <input
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          className={styles.input}
+          placeholder="Apellido"
+        ></input>
 
-      <h1 >UserName</h1>
-      <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-    
-      ></input>
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className={styles.input}
+          placeholder="Nombre de Usuario"
+        ></input>
 
-      <h1 >Email</h1>
-      <input
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-    
-      ></input>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={styles.input}
+          placeholder="Correo Electronico"
+        ></input>
 
-      <h1 >Password</h1>
-      <input
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        
-      ></input>
-
-   
-        
-    
-      <button onClick={handleSignin} >
-        SIGN
-      </button>
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className={styles.input}
+          placeholder="Contrasena"
+        ></input>
+        <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <button onClick={handleSignin} className={styles.mainButton}>SIGN IN</button>
+          <button>Registrate con Google</button>
+        </section>
+        <h3>Ya tienes una cuenta? Inicia sesion</h3>
+      </section>
+      <section className={styles.rightImg}></section>
     </div>
   );
 }

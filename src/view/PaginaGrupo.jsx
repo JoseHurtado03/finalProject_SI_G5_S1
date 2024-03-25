@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AgregarComentarioGrupo } from "../Controllers/Groups";
 import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
-import style from "../CSS/PaginaGrupo.module.css";
+import styles from "../CSS/PaginaGrupo.module.css";
 import { useUser } from "../context/user";
 import {getUsuario,subscribe} from "../Controllers/usuario"
 
@@ -69,43 +69,53 @@ function GroupPage() {
   }, [grupo]);
 
   return (
-    <>
+    <div style={{backgroundColor: "#FF8F50"}}>
       {grupo ? (
-        <div>
-          <h1>{params.id}</h1>
-          <div>{grupo.Mision} </div>
-          <div>{grupo.Vision} </div>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <section>
+            <h1 className={styles.mainTitle}>{params.id}</h1>
+            
+          </section>
+          <section>
+            <section className={styles.mission}>
+              <h2>Mision</h2>
+              <div>{grupo.Mision} </div>
+            </section>
+            <section className={styles.vision}>
+              <h2>Vision</h2>
+              <div>{grupo.Vision} </div>
+            </section>
+          </section>
         </div>
       ) : (
         ""
       )}
+      <section style={{display: 'flex', flexDirection: 'row'}}>
+          {subscrito? (""):(<button onClick={handleClickSubscribe} className={styles.subcribe}>+</button>)}
 
-        {subscrito? (""):(<button onClick={handleClickSubscribe}>Subscribe</button>)}
-        
-        
+        <div >
+          <input
+            value={Comentario}
+            onChange={(e) => setComentario(e.target.value)}
+            className={styles.inputMsg}
+            placeholder="Ingresa un comentario"
+          ></input>
+          <button onClick={handleClick} className={styles.sendButton}>Enviar</button>
 
-
-
-      <div>
-        <input
-          value={Comentario}
-          onChange={(e) => setComentario(e.target.value)}
-        ></input>
-        <button onClick={handleClick}>enviar</button>
-
-        <div>
-          {Comentarios
-            ? Comentarios.map((coment, index) => (
-                <Comment
-                  key={index}
-                  nombre={coment.nombre}
-                  comentario={coment.comentario}
-                ></Comment>
-              ))
-            : "Cargando"}
+          <div>
+            {Comentarios
+              ? Comentarios.map((coment, index) => (
+                  <Comment
+                    key={index}
+                    nombre={coment.nombre}
+                    comentario={coment.comentario}
+                  ></Comment>
+                ))
+              : "Cargando"}
+          </div>
         </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }
 export default GroupPage;

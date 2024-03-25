@@ -1,0 +1,55 @@
+.mainTitle{
+    color: #000;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.input{
+    display: flex;
+    height: 35px;
+    width: 170px;
+    align-items: center;
+    padding: 15px 205px 15px 43px;
+    border-radius: 20px;
+    border: 1px solid #BCBCBC;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    color: #000000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.mainButton{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 9px 0px 0px 200px;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #F6821F;
+    background: #F6821F;
+    box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin-right: 10px;
+}
+
+
+.rightImg{
+    width: 800px;
+    height: 710px;
+    background-image: url(https://talcualdigital.com/wp-content/uploads/2019/11/Unimet.jpg);
+}
