@@ -5,6 +5,7 @@ import GroupPage from './view/PaginaGrupo';
 import Sign from './view/SignIn';
 import Login from "./view/LogIn"
 import PerfilUsuario from "./view/PerfilUsuario"
+import Search from './view/Search'
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,11 @@ export const router = createBrowserRouter([
     {
       path: '/PefilUsuario',
       element: <PerfilUsuario></PerfilUsuario>
+    },
+
+    {
+      path: '/Search',
+      element: <Search></Search>
     }
 
 

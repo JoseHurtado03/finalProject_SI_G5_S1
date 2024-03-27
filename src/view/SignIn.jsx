@@ -9,7 +9,7 @@ import {
 import { useUser } from "../context/user";
 import { createUser } from "../Controllers/usuario";
 import styles from '../CSS/SignIn.module.css'
-
+import {Link} from "react-router-dom";
 
 export default function Sign() {
   const navigate = useNavigate();
@@ -80,20 +80,20 @@ export default function Sign() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className={styles.input}
-          placeholder="Correo Electronico"
+          placeholder="Correo Electrónico"
         ></input>
 
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className={styles.input}
-          placeholder="Contrasena"
+          placeholder="Contraseña"
         ></input>
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
           <button onClick={handleSignin} className={styles.mainButton}>SIGN IN</button>
           <button>Registrate con Google</button>
         </section>
-        <h3>Ya tienes una cuenta? Inicia sesion</h3>
+        <Link to={"/Login"} style={{marginTop:'20px'}}>Ya tienes una cuenta? Inicia sesión</Link>
       </section>
       <section className={styles.rightImg}></section>
     </div>

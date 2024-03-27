@@ -18,7 +18,7 @@ function MainPage() {
 
 
         <section>
-          <h1 className={styles.mainTitle}>¿Buscas formar parte de alguna agrupación estudiantil?</h1>
+          <h1 className={styles.mainTitle}>¿Buscas formar parte de alguna agrupación estudiantil? ¡MetroGroups es para ti!</h1>
         </section>
         <div style={{display:'flex', flexDirection:"row"}}>
         {grupos? (
@@ -32,6 +32,15 @@ function MainPage() {
         )
         }
         </div>
+        <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFAA2A'}}>
+          <section>
+            <h2 className={styles.valueTitle}>Visión</h2>
+            <h3 className={styles.valueText}>Ser la plataforma líder en la gestión y promoción de las Agrupaciones Estudiantiles de la Universidad Metropolitana. Nuestra visión es fomentar la participación activa de la comunidad estudiantil en actividades recreativas, culturales, deportivas y científicas, impulsando el sentido de pertenencia y liderazgo en un entorno colaborativo y diverso.</h3>
+            <h2 className={styles.valueTitle}>Misión</h2>
+            <h3 className={styles.valueText}>Nuestra misión es proporcionar una plataforma integral y accesible que facilite la gestión y difusión de las Agrupaciones Estudiantiles de la Universidad Metropolitana. Nos comprometemos a ofrecer herramientas innovadoras que promuevan el trabajo en equipo, el desarrollo de habilidades y el intercambio de conocimientos entre los estudiantes.</h3>
+          </section>
+          <section className={styles.foto}>Logo de la página</section>
+        </section>
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFE9D0'}}>
           <section className={styles.foto}></section>
           <section>

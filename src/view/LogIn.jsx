@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {createUserWithEmail,SingInwithEmail,singInGoogle,singOut} from "../Controllers/auth"
 import {useUser} from "../context/user"
-import { useNavigate,Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 import {createUser,buscarUsuarioPorId} from "../Controllers/usuario"
 import styles from '../CSS/Login.module.css'
@@ -95,19 +95,19 @@ export default function Login(){
         <section className={styles.leftImg}></section>
         <section style={{marginLeft:'300px'}}>
             <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                <h1 className={styles.mainTitle}>Inicio de Sesion</h1>
+                <h1 className={styles.mainTitle}>Inicio de Sesión</h1>
                 <button className={styles.homeButton}>Inicio</button>
             </section>
             <section>
                 <input value={email} onChange={e =>  setEmail(e.target.value) } placeholder="Correo Electronico" className={styles.input}></input>
                 <input value={password} onChange={e =>  setPassword(e.target.value) } placeholder="Contrasena" className={styles.input}></input>
             </section>
-            <section>
+            <section style={{marginBottom:'50px'}}>
                 <button  onClick={ handleLogin} className={styles.mainButton}>LogIn</button>
                 <button  onClick={handleLogingGoogle}>GOOGLE</button>
                 <button  onClick={handleBack}>Regresar</button>
             </section> 
-            <h2>¿No te has registrado aún?</h2>
+            <Link to={'/SignIn'}>¿No tienes una cuenta? Regístrate</Link>
         </section>
     </div>)
 }

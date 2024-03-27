@@ -14,32 +14,30 @@ function Header({user}) {
 
 
   return (
-    <header className={styles.Header}>
+    <header className={styles.header}>
    
     {   user ? 
     
     
     (
         <div style={{display:"flex", flexDirection:"row", gap:"1rem"}}>
-        <Link to={"/SignIn"}>Sign</Link>
-        <Link to={"/Login"}>LogIn</Link>
-        <Link to={"/PefilUsuario"}>Perfil</Link>
+          <Link to={"/"} className={styles.text}>Inicio</Link>
+          <Link to={"/SignIn"} className={styles.text}>Sign</Link>
+          <Link to={"/Login"} className={styles.text}>LogIn</Link>
+          <Link to={"/Search"} className={styles.text}>🔎</Link>
+          <Link to={"/PefilUsuario"} className={styles.text}>Perfil</Link>
         </div>
-
-
-        
-        
     )
 
     :
 
     (
         <div style={{display:"flex", flexDirection:"row", gap:"1rem"}}>
-        <Link to={"/SignIn"}>Sign</Link>
-        <Link to={"/Login"}>LogIn</Link>
+          <Link to={"/"} className={styles.text}>Inicio</Link>
+          <Link to={"/SignIn"} className={styles.text}>Sign</Link>
+          <Link to={"/Login"} className={styles.text}>LogIn</Link>
+          <Link to={"/Search"} className={styles.text}>🔎</Link>
         </div>
-        
-        
         )
 
 
