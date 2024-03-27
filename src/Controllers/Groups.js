@@ -23,6 +23,42 @@ export async function getGrupos() {
     return grupos;
 }
 
+export async function quitarPersonaGrupo(correo,id){
+  
+    const userDoc= await getDoc(doc(db,"Grupos",`${id}`))
+    const userRef = doc(db,"Grupos",`${id}`);
+    const grupo=userDoc.data()
+    console.log(grupo)
+    const personas=grupo.Integrantes        
+    let index = personas.indexOf(correo);
+    
+    
+    personas.splice(index, 1);
+
+ 
+
+    await updateDoc(userRef, {
+        Integrantes: personas
+      });
+    }
+    
+
+    export async function agregarPersonaGrupo(correo,id){
+
+        const userDoc= await getDoc(doc(db,"Grupos",`${id}`))
+        const userRef = doc(db,"Grupos",`${id}`);
+        const grupo=userDoc.data()
+        
+        const personas=grupo.Integrantes        
+        personas.push(correo)
+    
+     
+    
+        await updateDoc(userRef, {
+            Integrantes: personas
+          });
+        }
+
 
 export async function buscarGrupo(nombre){
 
@@ -39,13 +75,27 @@ export async function buscarGrupo(nombre){
 }
 
 
-export async function agregarComentario(nombre,comentario){
 
 
+export async function AgregarPersona(id,email){
 
+    const grupoDoc= await getDoc(doc(db,"Grupos",`${id}`))
+    const grupoRef = doc(db,"Grupos",`${id}`);
+    
+    const personas=grupoDoc.data().Comentarios
+    
+    personas.push(email)
+    
+
+    await updateDoc(grupoRef, {
+        Integrantes: personas
+      });
+    
+   
+
+
+    
 }
-
-
 export async function AgregarComentarioGrupo(id,comentario){
 
     const grupoDoc= await getDoc(doc(db,"Grupos",`${id}`))

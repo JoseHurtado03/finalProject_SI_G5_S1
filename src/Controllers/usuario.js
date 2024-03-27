@@ -4,11 +4,11 @@ import {db} from "../firebase"
 
 //Modificar usuario, buscar usuario. 
 
-export async function createUser(Nombre,Apellido,UserName,email,password,juego){
+export async function createUser(Nombre,Apellido,UserName,email,password){
     //const id = generateId()
- 
+    console.log("se creo")
     const userCollection=doc(collection(db,"Usuarios"),email)
-    const usuario={Nombre,Apellido,UserName,email,password,grupos:[],juego}
+    const usuario={Nombre,Apellido,UserName,email,password,subscripciones:[]}
     await setDoc(userCollection,usuario)
     
 }
@@ -153,12 +153,18 @@ export async function cambiarInfoUsuario(correo,Nombref,Apellidof,juegof){
     
 }
 
-export async function cambiarGrupo(correo,grupo){
+export async function cambiarGrupo(correo,id){
 
     const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
     const userRef = doc(db,"Usuarios",`${correo}`);
     const usuario=userDoc.data()
     
+    const groups=usuario.subscripciones        
+    let index = groups.indexOf(id);
+    
+    
+    groups.splice(index, 1);
+
     
 
 
@@ -172,7 +178,7 @@ export async function cambiarGrupo(correo,grupo){
     
 
     await updateDoc(userRef, {
-      subscripciones: grupo
+      subscripciones: groups
       });
 }
 

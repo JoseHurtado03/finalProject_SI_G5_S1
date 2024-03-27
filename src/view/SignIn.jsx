@@ -7,11 +7,21 @@ import {
   singOut,
 } from "../Controllers/auth";
 import { useUser } from "../context/user";
-import { createUser } from "../Controllers/usuario";
+import { createUser,buscarUsuarioPorId } from "../Controllers/usuario";
 import styles from "../CSS/SignIn.module.css";
 import { Link } from "react-router-dom";
 
 export default function Sign() {
+
+  function separarNombreApellido(nombreCompleto) {
+    const partes = nombreCompleto.split(" "); // Divide la cadena en un array de substrings separados por espacios
+    const nombre = partes[0]; // El primer elemento es el nombre
+    const apellido = partes.slice(1).join(" "); // Los elementos restantes son el apellido
+    return { nombre, apellido };
+  }
+
+
+
   const navigate = useNavigate();
   const user = useUser();
 
@@ -32,20 +42,42 @@ export default function Sign() {
 
   const handleLogingGoogle = async (e) => {
     const user = await singInGoogle();
-
-    console.log(user);
+            
   };
 
   useEffect(() => {
     if (user) {
-      //activar despues
-      //   navigate("/");
+      const comprove = async (id) => {
+        const nuevo = await buscarUsuarioPorId(id);
+
+        if (nuevo) {
+          console.log("es nuebo");
+          //activar despues
+          navigate("/");
+        } else {
+          const NombreApellido = separarNombreApellido(user.displayName);
+
+          const crear = async () => {
+            await createUser(
+              NombreApellido.nombre,
+              NombreApellido.apellido,
+              "username",
+              user.email,
+              "password"
+            );
+          };
+
+          crear();
+
+          //activar despues
+          navigate("/");
+        }
+      };
+      comprove(user.email);
+      // navigate("/AppPage")
     }
   }, [user, navigate]);
 
-  const handleMostrarOcultarJuegos = () => {
-    setMostrarJuegos(!mostrarJuegos);
-  };
 
   return (
     <div
@@ -112,7 +144,7 @@ export default function Sign() {
             SIGN IN
           </button>
         </section>
-        <button className={styles.Google}>Registrate con Google</button>
+        <button className={styles.Google} onClick={handleLogingGoogle}>Registrate con Google</button>
         <Link to={"/Login"} style={{ marginTop: "20px" }}>
           ¿Ya tienes una cuenta? Inicia sesión
         </Link>

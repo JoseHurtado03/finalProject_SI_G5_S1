@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { AgregarComentarioGrupo } from "../Controllers/Groups";
+import { AgregarComentarioGrupo, agregarPersonaGrupo} from "../Controllers/Groups";
 import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
+import Paypal from "../Components/paypal";
 import styles from "../CSS/PaginaGrupo.module.css";
 import { useUser } from "../context/user";
 import {getUsuario,subscribe} from "../Controllers/usuario"
@@ -57,6 +58,8 @@ function GroupPage() {
   const handleClickSubscribe = () => {
     
     subscribe(user.email,params.id)
+    agregarPersonaGrupo(user.email,params.id)
+
     setSubscrito(true)
   };
 
@@ -90,6 +93,14 @@ function GroupPage() {
       ) : (
         ""
       )}
+
+    <div style={{margin:"2rem"}}>
+
+        <Paypal></Paypal>
+    </div>
+
+
+
       <section style={{display: 'flex', flexDirection: 'row'}}>
           {subscrito? (""):(<button onClick={handleClickSubscribe} className={styles.subcribe}>+</button>)}
 
@@ -101,6 +112,11 @@ function GroupPage() {
             placeholder="Ingresa un comentario"
           ></input>
           <button onClick={handleClick} className={styles.sendButton}>Enviar</button>
+
+          
+
+
+
 
           <div>
             {Comentarios

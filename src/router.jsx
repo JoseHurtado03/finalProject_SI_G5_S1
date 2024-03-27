@@ -6,6 +6,8 @@ import Sign from './view/SignIn';
 import Login from "./view/LogIn"
 import PerfilUsuario from "./view/PerfilUsuario"
 import Search from './view/Search'
+import Paypal from "./Components/paypal"
+import Admin from './view/Admin';
 
 export const router = createBrowserRouter([
     {
@@ -35,7 +37,12 @@ export const router = createBrowserRouter([
     {
       path: '/Search',
       element: <Search></Search>
-    }
+    },
+    {
+      path: '/Admin',
+      element: <Admin></Admin>
+    },
+
 
 
   ]);

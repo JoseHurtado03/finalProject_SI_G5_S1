@@ -2,13 +2,13 @@ import { useState,useEffect } from 'react'
 import styles from "../CSS/Header.module.css"
 import { useNavigate ,Link} from "react-router-dom";
   
-
+import {singOut} from "../Controllers/auth"
 
 function Header({user}) {
     const navigate = useNavigate();
-    const HandleClick=()=>{
+    const handleLogout=()=>{
 
-
+      singOut();
     }
 
 
@@ -26,6 +26,7 @@ function Header({user}) {
           <Link to={"/Login"} className={styles.text}>LogIn</Link>
           <Link to={"/Search"} className={styles.text}>🔎</Link>
           <Link to={"/PefilUsuario"} className={styles.text}>Perfil</Link>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
     )
 

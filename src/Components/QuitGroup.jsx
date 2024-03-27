@@ -5,7 +5,7 @@ import {useUser} from "../context/user"
 import { useEffect, useState } from "react"
 import styles from "../CSS/GroupCard.module.css"
 
-import {buscarGrupo} from "../Controllers/Groups"
+import {buscarGrupo,quitarPersonaGrupo} from "../Controllers/Groups"
 
 
 export default function QuitGroup(id){
@@ -13,14 +13,15 @@ export default function QuitGroup(id){
     const [grupo,setGrupo]= useState(null)
     const [grupoP,setGrupoP]= useState(null)
     const currentuser=useUser()
-    //const [visible,setVisible] = useState(true) //Este state es para que muestre o no el boton de quit group al igual que el titulo del grupo. 
+    const [visible,setVisible] = useState(true) //Este state es para que muestre o no el boton de quit group al igual que el titulo del grupo. 
     
     const handleUnsubscribe = () => {
         
+        console.log(id.id)
         
-        let index = grupoP.indexOf(id.id);
-        grupoP.splice(index, 1);
-        cambiarGrupo(currentuser.email, grupoP);
+        
+        cambiarGrupo(currentuser.email, id);
+        quitarPersonaGrupo(currentuser.email, id.id)
     
         setVisible(false);
       };
@@ -60,7 +61,11 @@ export default function QuitGroup(id){
 
 
     return (
-    <div className={styles.carta}>
+
+
+     <div>
+
+        {visible ? ( <div className={styles.carta} >
         {/* <div>{id}</div> */}
         
             {grupo ? (
@@ -80,6 +85,11 @@ export default function QuitGroup(id){
         
           
 
-    </div>)
+    </div>):("")}
+
+     </div>
+
+
+   )
 
 }

@@ -24,6 +24,14 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
+
+      if(user.email=="admin@gmail.com"){
+        navigate("/Admin");
+      }else{
+
+
+
+
       const comprove = async (id) => {
         const nuevo = await buscarUsuarioPorId(id);
 
@@ -53,6 +61,7 @@ export default function Login() {
       comprove(user.email);
       // navigate("/AppPage")
     }
+  }
   }, [user, navigate]);
 
   const [email, setEmail] = useState("");
@@ -100,9 +109,13 @@ export default function Login() {
           ></input>
         </section>
         <section style={{ marginBottom: "50px" }}>
+
+          
           <button onClick={handleLogin} className={styles.mainButton}>
             LogIn
           </button>
+
+
           <button onClick={handleLogingGoogle}>GOOGLE</button>
           <button onClick={handleBack}>Regresar</button>
         </section>
