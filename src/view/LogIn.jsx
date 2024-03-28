@@ -92,7 +92,7 @@ export default function Login() {
           }}
         >
           <h1 className={styles.mainTitle}>Inicio de Sesión</h1>
-          <button className={styles.homeButton}>Inicio</button>
+          {/* <button className={styles.homeButton}>Inicio</button> */}
         </section>
         <section className={styles.fields}>
           <input
@@ -111,13 +111,12 @@ export default function Login() {
         <section style={{ marginBottom: "50px" }}>
 
           
-          <button onClick={handleLogin} className={styles.mainButton}>
-            LogIn
-          </button>
+          <button onClick={handleLogin} className={styles.mainButton}>LogIn</button>
 
 
-          <button onClick={handleLogingGoogle}>GOOGLE</button>
-          <button onClick={handleBack}>Regresar</button>
+          <button onClick={handleLogingGoogle} className={styles.Google}>GOOGLE</button>
+
+          <button onClick={handleBack} className={styles.homeButton}>Regresar</button>
         </section>
         <Link to={"/SignIn"}>¿No tienes una cuenta? Regístrate</Link>
       </section>

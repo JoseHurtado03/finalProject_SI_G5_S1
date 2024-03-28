@@ -81,3 +81,26 @@
   line-height: normal;
   margin-top: 40px;
 }
+
+
+.Google {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #d8d8d8;
+  background: #fff;
+  box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 20px;
+  color: #000000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  margin-right: 10px;
+}
