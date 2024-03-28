@@ -1,5 +1,18 @@
-import { collection,doc,getDoc,getDocs, query,updateDoc } from "firebase/firestore";
+import { collection,doc,getDoc,getDocs, query,updateDoc, deleteDoc,setDoc} from "firebase/firestore";
 import {db} from "../firebase"
+
+
+
+export async function createGroup(nombre,mision,vision,tipo){
+   
+    console.log("se creo")
+    const userCollection=doc(collection(db,"Grupos"),nombre)
+    const usuario={nombre,mision,vision,Integrantes:[],Comentarios:[]}
+    await setDoc(userCollection,usuario)
+    
+}
+
+
 
 
 export async function getGrupos() {
@@ -13,7 +26,9 @@ export async function getGrupos() {
 
         nombre: doc.id,
         mision: doc.data().Mision,
-        vision: doc.data().Vision
+        vision: doc.data().Vision,
+        Comentarios: doc.data().Comentarios,
+        Integrantes: doc.data().Integrantes
 
         
     }
@@ -114,4 +129,11 @@ export async function AgregarComentarioGrupo(id,comentario){
 
 
     
+}
+
+
+export async function DeleteGrupo(id){
+    await deleteDoc(doc(db, "Grupos", `${id}`));
+
+
 }
