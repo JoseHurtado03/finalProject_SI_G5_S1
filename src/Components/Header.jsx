@@ -21,6 +21,7 @@ function Header({user}) {
     
     (
         <div style={{display:"flex", flexDirection:"row", gap:"1rem"}}>
+          <Link to={"/"} className={styles.logo}></Link>
           <Link to={"/"} className={styles.text}>Inicio</Link>
           <Link to={"/SignIn"} className={styles.text}>Sign</Link>
           <Link to={"/Login"} className={styles.text}>LogIn</Link>

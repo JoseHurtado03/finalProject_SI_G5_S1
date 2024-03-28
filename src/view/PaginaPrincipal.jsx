@@ -16,7 +16,6 @@ function MainPage() {
 
         <Header user={user}></Header>
 
-
         <section>
           <h1 className={styles.mainTitle}>¿Buscas formar parte de alguna agrupación estudiantil? ¡MetroGroups es para ti!</h1>
         </section>
