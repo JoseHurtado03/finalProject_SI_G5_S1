@@ -4,11 +4,11 @@ import {db} from "../firebase"
 
 //Modificar usuario, buscar usuario. 
 
-export async function createUser(Nombre,Apellido,UserName,email,password){
+export async function createUser(Nombre,Apellido,UserName,email,password,role){
     //const id = generateId()
     console.log("se creo")
     const userCollection=doc(collection(db,"Usuarios"),email)
-    const usuario={Nombre,Apellido,UserName,email,password,subscripciones:[]}
+    const usuario={Nombre,Apellido,UserName,email,password,role,subscripciones:[]}
     await setDoc(userCollection,usuario)
     
 }
@@ -16,9 +16,6 @@ export async function createUser(Nombre,Apellido,UserName,email,password){
 export async function buscarUsuarioPorId(userId) {
     try {
       // Obtén una referencia al documento del usuario en Firestore
-   
-
-
 
      // Reemplaza 'usuarios' con el nombre de tu colección
       const userRef= await getDoc(doc(db,"Usuarios",userId))
