@@ -20,13 +20,16 @@ function GroupPage() {
 
   const [subscrito,setSubscrito]=useState(false)
 
+  const [nombreUsuario, setNombreUsuario] = useState("");
+
+
   const handleClick = () => {
     AgregarComentarioGrupo(params.id, {
-      nombre: "Enrique Millan",
+      nombre: nombreUsuario,
       comentario: Comentario,
     });
     setComentario("");
-    Comentarios.push({ nombre: "Enrique Millan", comentario: Comentario });
+    Comentarios.push({ nombre: nombreUsuario, comentario: Comentario });
   };
 
   useEffect(()=>{
@@ -36,6 +39,8 @@ function GroupPage() {
            
             
             const usuario= await getUsuario(user.email)
+
+            setNombreUsuario(usuario.Nombre +" "+usuario.Apellido);
             
             const gruposUsuario=usuario.subscripciones
 
