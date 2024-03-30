@@ -11,6 +11,10 @@ export default function Search() {
   const { user } = useUserContext();
   const [group_name, setGrupo] = useState("");
   const [dispo, setDispo] = useState("");
+  const handleChange = (e) => {
+    setGrupo(e.target.value);
+    setShowGroup(false);
+  };
   const handleSearch = async () => {
     try {
       const grupo = await buscarGrupo(group_name);
@@ -41,7 +45,7 @@ export default function Search() {
               placeholder="Ingresa el nombre del grupo"
               className={styles.input}
               value={group_name}
-              onChange={(e) => setGrupo(e.target.value)}
+              onChange={handleChange}
             ></input>
           </div>
           <button onClick={handleSearch} className={styles.boton}>

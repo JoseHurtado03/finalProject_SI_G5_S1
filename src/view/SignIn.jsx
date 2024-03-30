@@ -7,7 +7,7 @@ import {
   singOut,
 } from "../Controllers/auth";
 import { useUserContext } from "../context/user";
-import { createUser,buscarUsuarioPorId } from "../Controllers/usuario";
+import { createUser, buscarUsuarioPorId } from "../Controllers/usuario";
 import styles from "../CSS/SignIn.module.css";
 import { Link } from "react-router-dom";
 import { getAdditionalUserInfo, signInWithPopup } from "@firebase/auth";
@@ -15,7 +15,6 @@ import { collection, doc, setDoc } from "@firebase/firestore";
 import { auth, db, googleProvider } from "../firebase";
 
 export default function Sign() {
-
   function separarNombreApellido(nombreCompleto) {
     const partes = nombreCompleto.split(" "); // Divide la cadena en un array de substrings separados por espacios
     const nombre = partes[0]; // El primer elemento es el nombre
@@ -23,10 +22,8 @@ export default function Sign() {
     return { nombre, apellido };
   }
 
-
-
   const navigate = useNavigate();
-  const {user, userData} = useUserContext();
+  const { user, userData } = useUserContext();
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -37,8 +34,8 @@ export default function Sign() {
 
   const handleSignin = async (e) => {
     const user = await createUserWithEmail(email, password);
-    const uid = user.user.uid
-    console.log(uid)
+    const uid = user.user.uid;
+    console.log(uid);
     if (user != null) {
       let role = "regular";
       if (userType === "admin") {
@@ -57,15 +54,14 @@ export default function Sign() {
     const infoRelativaU = await getAdditionalUserInfo(result);
 
     if (infoRelativaU.isNewUser) {
-
       const fullName = result.user.displayName;
-      const namesArray = fullName.split(' ');
+      const namesArray = fullName.split(" ");
 
       const firstName2 = namesArray[0];
-      const lastName2 = namesArray.slice(1).join(' ');
+      const lastName2 = namesArray.slice(1).join(" ");
 
       const email = result.user.email;
-      const emailArray = email.split('@');
+      const emailArray = email.split("@");
 
       const username2 = emailArray[0];
 
@@ -76,30 +72,27 @@ export default function Sign() {
         email: result.user.email,
         password: "contrasena",
         role: "regular",
-        subscripciones: []
+        subscripciones: [],
       });
 
-
-      const [user, setUser] =  useState(result.user);
-    } else{
-    console.log("LOGIN FAILED, Try Again usuario registrado previamente");
+      const [user, setUser] = useState(result.user);
+    } else {
+      console.log("LOGIN FAILED, Try Again usuario registrado previamente");
     }
-
-};
+  };
 
   const handleLogingGoogle = async (e) => {
     const user = await singInGoogle();
-            
   };
 
   useEffect(() => {
     if (userData) {
       const comprove = async (id) => {
-        if(userData.role=="admin"){
-          navigate("/Admin");}
-          else if(userData.role=="regular"){
-            navigate("/");
-          } 
+        if (userData.role == "admin") {
+          navigate("/Admin");
+        } else if (userData.role == "regular") {
+          navigate("/");
+        }
         //const nuevo = await buscarUsuarioPorId(id);
 
         // if (nuevo) {
@@ -129,7 +122,6 @@ export default function Sign() {
       // navigate("/AppPage")
     }
   }, [userData, navigate]);
-
 
   return (
     <div
@@ -195,7 +187,6 @@ export default function Sign() {
           <option value="admin">Admin</option>
         </select>
 
-
         <section
           style={{
             display: "flex",
@@ -204,10 +195,13 @@ export default function Sign() {
           }}
         >
           <button onClick={handleSignin} className={styles.mainButton}>
-            SIGN IN
+            Sign in
           </button>
         </section>
-        <button className={styles.Google} onClick={handleGoogleClick}>Registrate con Google</button>
+        <button className={styles.Google} onClick={handleGoogleClick}>
+          <img src="/Google.png" alt="club" />
+          Registrate con Google
+        </button>
         <Link to={"/Login"} style={{ marginTop: "20px" }}>
           ¿Ya tienes una cuenta? Inicia sesión
         </Link>

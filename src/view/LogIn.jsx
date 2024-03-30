@@ -131,17 +131,8 @@ export default function Login() {
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       <section className={styles.leftImg}></section>
-      <section style={{ marginLeft: "50px" }}>
-        <section
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <h1 className={styles.mainTitle}>Inicio de Sesión</h1>
-          {/* <button className={styles.homeButton}>Inicio</button> */}
-        </section>
+      <section className={styles.rightColumn} style={{ marginLeft: "50px" }}>
+        <h1 className={styles.mainTitle}>Inicio de Sesión</h1>
         <section className={styles.fields}>
           <input
             value={email}
@@ -162,7 +153,8 @@ export default function Login() {
           </button>
 
           <button onClick={handleClick} className={styles.Google}>
-            Google
+            <img src="/Google.png" alt="club" />
+            Inicio con Google
           </button>
 
           <button onClick={handleBack} className={styles.homeButton}>

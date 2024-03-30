@@ -7,6 +7,9 @@
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input {
@@ -59,7 +62,7 @@
 
 .leftImg {
   width: 800px;
-  height: 760px;
+  height: 650px;
   background-image: url(https://www.unimet.edu.ve/wp-content/uploads/2023/08/FOTOS-CAMPUS-UNIMET-1030x687-1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -82,7 +85,7 @@
   margin-top: 40px;
 } */
 
-.homeButton{
+.homeButton {
   height: 50px;
   display: flex;
   align-items: center;
@@ -102,6 +105,13 @@
   line-height: normal;
   text-align: center;
   margin-right: 10px;
+}
+
+.rightColumn {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Google {
@@ -124,4 +134,9 @@
   line-height: normal;
   text-align: center;
   margin-right: 10px;
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
 }
