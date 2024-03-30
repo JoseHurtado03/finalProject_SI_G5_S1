@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { AgregarComentarioGrupo, agregarPersonaGrupo} from "../Controllers/Groups";
+import {
+  AgregarComentarioGrupo,
+  agregarPersonaGrupo,
+} from "../Controllers/Groups";
 import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
 import Paypal from "../Components/paypal";
 import styles from "../CSS/PaginaGrupo.module.css";
 import { useUser } from "../context/user";
-import {getUsuario,subscribe} from "../Controllers/usuario"
+import { getUsuario, subscribe } from "../Controllers/usuario";
 
 function GroupPage() {
   const params = useParams();
@@ -18,10 +21,10 @@ function GroupPage() {
 
   const [Comentario, setComentario] = useState("");
 
-  const [subscrito,setSubscrito]=useState(false)
+  const [notSubscribed, setNotSubscribed] = useState(true);
+  const [subscrite, setSubscrite] = useState(false);
 
   const [nombreUsuario, setNombreUsuario] = useState("");
-
 
   const handleClick = () => {
     AgregarComentarioGrupo(params.id, {
@@ -32,40 +35,34 @@ function GroupPage() {
     Comentarios.push({ nombre: nombreUsuario, comentario: Comentario });
   };
 
-  useEffect(()=>{
-    if(user){
+  useEffect(() => {
+    if (user) {
+      const uwu = async () => {
+        const usuario = await getUsuario(user.email);
 
-        const uwu=async ()=>{
-           
-            
-            const usuario= await getUsuario(user.email)
+        setNombreUsuario(usuario.Nombre + " " + usuario.Apellido);
 
-            setNombreUsuario(usuario.Nombre +" "+usuario.Apellido);
-            
-            const gruposUsuario=usuario.subscripciones
+        const gruposUsuario = usuario.subscripciones;
 
-            if(gruposUsuario.includes(params.id)){
-                setSubscrito(true)
-            }
-           
-           
-
+        if (gruposUsuario.includes(params.id)) {
+          setNotSubscribed(false);
+          setSubscrite(true);
         }
-        
-        uwu()
+      };
+
+      uwu();
     }
-
-}
-
-,[user])
-
+  }, [user]);
 
   const handleClickSubscribe = () => {
-    
-    subscribe(user.email,params.id)
-    agregarPersonaGrupo(user.email,params.id)
-
-    setSubscrito(true)
+    if (user != null) {
+      subscribe(user.email, params.id);
+      agregarPersonaGrupo(user.email, params.id);
+      setNotSubscribed(false);
+      setSubscrite(true);
+    } else {
+      window.alert("Inicie sesión xfa");
+    }
   };
 
   const navigate = useNavigate();
@@ -77,12 +74,17 @@ function GroupPage() {
   }, [grupo]);
 
   return (
-    <div style={{backgroundColor: "#FF8F50"}}>
+    <div style={{ backgroundColor: "#FF8F50" }}>
       {grupo ? (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <section>
             <h1 className={styles.mainTitle}>{params.id}</h1>
-            
           </section>
           <section>
             <section className={styles.mission}>
@@ -99,29 +101,36 @@ function GroupPage() {
         ""
       )}
 
-    <div style={{margin:"2rem"}}>
-
+      <div style={{ margin: "2rem" }}>
         <Paypal></Paypal>
-    </div>
+      </div>
 
+      <section style={{ display: "flex", flexDirection: "row" }}>
+        {notSubscribed ? (
+          ""
+        ) : (
+          <button onClick={handleClickSubscribe} className={styles.subcribe}>
+            +
+          </button>
+        )}
+        {subscrite ? (
+          ""
+        ) : (
+          <button onClick={handleClickSubscribe} className={styles.subcribe}>
+            ✔
+          </button>
+        )}
 
-
-      <section style={{display: 'flex', flexDirection: 'row'}}>
-          {subscrito? (""):(<button onClick={handleClickSubscribe} className={styles.subcribe}>+</button>)}
-
-        <div >
+        <div>
           <input
             value={Comentario}
             onChange={(e) => setComentario(e.target.value)}
             className={styles.inputMsg}
             placeholder="Ingresa un comentario"
           ></input>
-          <button onClick={handleClick} className={styles.sendButton}>Enviar</button>
-
-          
-
-
-
+          <button onClick={handleClick} className={styles.sendButton}>
+            Enviar
+          </button>
 
           <div>
             {Comentarios
