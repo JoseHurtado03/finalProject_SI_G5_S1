@@ -10,12 +10,12 @@ import Comment from "../Components/Comentario";
 import Paypal from "../Components/paypal";
 import styles from "../CSS/PaginaGrupo.module.css";
 import { useUserContext } from "../context/user";
-import {getUsuario,subscribe} from "../Controllers/usuario"
+import { getUsuario, subscribe } from "../Controllers/usuario";
 
 function GroupPage() {
   const params = useParams();
   const grupo = useGrupo(params.id);
-  const {user, userData} = useUserContext();
+  const { user, userData } = useUserContext();
 
   const [Comentarios, setComentarios] = useState();
 
@@ -35,39 +35,27 @@ function GroupPage() {
     Comentarios.push({ nombre: nombreUsuario, comentario: Comentario });
   };
 
-  useEffect(()=>{
-    if(userData){
+  useEffect(() => {
+    if (userData) {
+      const uwu = async () => {
+        const usuario = await getUsuario(user.uid);
+        setNombreUsuario(usuario.Nombre + " " + usuario.Apellido);
 
-        const uwu=async ()=>{
-           
-            
-            const usuario= await getUsuario(user.uid)
-            setNombreUsuario(usuario.Nombre +" "+usuario.Apellido);
-            
-            const gruposUsuario=usuario.subscripciones
-            console.log(gruposUsuario, params.id,"hahha")
-            if(gruposUsuario.includes(params.id)){
-              setNotSubscribed(false);
-              setSubscrite(true);
-            }
-            }
-           
-           
+        const gruposUsuario = usuario.subscripciones;
+        console.log(gruposUsuario, params.id, "hahha");
+        if (gruposUsuario.includes(params.id)) {
+          setNotSubscribed(false);
+          setSubscrite(true);
+        }
+      };
 
-        
-        
-        uwu()
+      uwu();
     }
-
-
-
-},[userData])
-
+  }, [userData]);
 
   const handleClickSubscribe = () => {
-    
     if (user != null) {
-      const uid = user.uid
+      const uid = user.uid;
       subscribe(uid, params.id);
       agregarPersonaGrupo(uid, params.id);
       setNotSubscribed(false);
@@ -76,7 +64,6 @@ function GroupPage() {
       window.alert("Inicie sesión xfa");
     }
   };
-
 
   const navigate = useNavigate();
 

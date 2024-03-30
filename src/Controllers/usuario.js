@@ -112,11 +112,9 @@ export async function subscribe(uid, idGrupo) {
 }
 
 export async function isSuscribed(uid, idGrupo) {
-  const suscription_group = await getDoc(
-    doc(db, "Usuarios", uid, "suscripciones", `${idGrupo}`)
-  );
+  const suscription_group = doc(db, "Usuarios", uid, "suscripciones");
   console.log(suscription_group, "prueba");
-  if (suscription_group != null) {
+  if (suscription_group.includes(idGrupo) != null) {
     return false;
   } else {
     return true;
