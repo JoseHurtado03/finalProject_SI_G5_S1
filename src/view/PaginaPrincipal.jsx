@@ -4,11 +4,11 @@ import useGrupos from '../CustomHooks/useGroups'
 import { buscarGrupo } from '../Controllers/Groups';
 import styles from '../CSS/HomePage.module.css'
 import Header from '../Components/Header';
-import { useUser } from "../context/user";
+import { useUserContext } from "../context/user";
 
 function MainPage() {
     const grupos= useGrupos()
-    const user = useUser();
+    const {user} = useUserContext();
 
   return (
     <>

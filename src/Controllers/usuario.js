@@ -4,10 +4,10 @@ import {db} from "../firebase"
 
 //Modificar usuario, buscar usuario. 
 
-export async function createUser(Nombre,Apellido,UserName,email,password,role){
+export async function createUser(Nombre,Apellido,UserName,email,password,role, uid){
     //const id = generateId()
-    console.log("se creo")
-    const userCollection=doc(collection(db,"Usuarios"),email)
+    console.log("se creo",uid)
+    const userCollection=doc(collection(db,"Usuarios"),uid)
     const usuario={Nombre,Apellido,UserName,email,password,role,subscripciones:[]}
     await setDoc(userCollection,usuario)
     
@@ -75,10 +75,10 @@ export async function buscarUsuario(correo,nombreg){
 }
 
 
-export async function subscribe(correo,idGrupo){
+export async function subscribe(uid,idGrupo){
 
-  const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
-  const userRef = doc(db,"Usuarios",`${correo}`);
+  const userDoc= await getDoc(doc(db,"Usuarios",uid))
+  const userRef = doc(db,"Usuarios",uid);
 
   const usuario=userDoc.data()
   
@@ -98,10 +98,10 @@ export async function subscribe(correo,idGrupo){
 }
 
 
-export async function getUsuario(correo){
+export async function getUsuario(uid){
 
       
-  const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
+  const userDoc= await getDoc(doc(db,"Usuarios",uid))
 
   const usuario=userDoc.data()
   
@@ -150,10 +150,10 @@ export async function cambiarInfoUsuario(correo,Nombref,Apellidof,juegof){
     
 }
 
-export async function cambiarGrupo(correo,id){
+export async function cambiarGrupo(uid,id){
 
-    const userDoc= await getDoc(doc(db,"Usuarios",`${correo}`))
-    const userRef = doc(db,"Usuarios",`${correo}`);
+    const userDoc= await getDoc(doc(db,"Usuarios",uid))
+    const userRef = doc(db,"Usuarios",uid);
     const usuario=userDoc.data()
     
     const groups=usuario.subscripciones        

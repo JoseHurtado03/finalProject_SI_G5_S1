@@ -6,13 +6,13 @@ import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
 import Paypal from "../Components/paypal";
 import styles from "../CSS/PaginaGrupo.module.css";
-import { useUser } from "../context/user";
+import { useUserContext } from "../context/user";
 import {getUsuario,subscribe} from "../Controllers/usuario"
 
 function GroupPage() {
   const params = useParams();
   const grupo = useGrupo(params.id);
-  const user = useUser();
+  const {user, userData} = useUserContext();
 
   const [Comentarios, setComentarios] = useState();
 
@@ -33,13 +33,12 @@ function GroupPage() {
   };
 
   useEffect(()=>{
-    if(user){
+    if(userData){
 
         const uwu=async ()=>{
            
             
-            const usuario= await getUsuario(user.email)
-
+            const usuario= await getUsuario(user.uid)
             setNombreUsuario(usuario.Nombre +" "+usuario.Apellido);
             
             const gruposUsuario=usuario.subscripciones
@@ -57,13 +56,13 @@ function GroupPage() {
 
 }
 
-,[user])
+,[userData])
 
 
   const handleClickSubscribe = () => {
-    
-    subscribe(user.email,params.id)
-    agregarPersonaGrupo(user.email,params.id)
+    const uid = user.uid
+    subscribe(uid,params.id)
+    agregarPersonaGrupo(userData.email,params.id)
 
     setSubscrito(true)
   };

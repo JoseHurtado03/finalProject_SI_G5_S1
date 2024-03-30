@@ -1,13 +1,13 @@
 import React from 'react'
 //import { useState } from 'react'
 import styles from '../CSS/PerfilUsuario.module.css'
-import { useUser } from "../context/user";
+import { useUserContext } from "../context/user";
 import { useState,useEffect } from 'react'
 import {getUsuario} from "../Controllers/usuario"
 import QuitGroup from '../Components/QuitGroup';
 
 export default function PerfilUsuario() {
-  const user = useUser();
+  const {user, userData} = useUserContext();
   
 
   const [Nombre,setNombre]= useState("")
@@ -16,18 +16,16 @@ export default function PerfilUsuario() {
   const [grupos,setGrupos]=useState()
 
   useEffect(()=>{
-    if(user){
+    if(userData){
 
         const uwu=async ()=>{
             console.log("Aparecio")
             
-            const usuario= await getUsuario(user.email)
-            
            
-            setNombre(usuario.Nombre)
-            setApellido(usuario.Apellido)
-            setEmail(user.email)
-            setGrupos(usuario.subscripciones)
+            setNombre(userData.Nombre)
+            setApellido(userData.Apellido)
+            setEmail(userData.email)
+            setGrupos(userData.subscripciones)
             
 
         }
@@ -37,14 +35,14 @@ export default function PerfilUsuario() {
 
 }
 
-    ,[user])
+    ,[userData])
 
 
 
 
 
 
-    return (
+     return ( userData ? (
       <div className={styles.container}>
         <section className={styles.section}>
           <img className={styles.imagen} src="https://banner2.cleanpng.com/20180331/khw/kisspng-computer-icons-user-clip-art-user-5abf13d4b67e20.4808850915224718927475.jpg" alt="Imagen de usuario" />
@@ -92,5 +90,6 @@ export default function PerfilUsuario() {
           </section>
         </section>
       </div>
+    ) :("Cargando...")
     );
   }

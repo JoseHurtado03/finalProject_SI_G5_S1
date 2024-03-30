@@ -5,7 +5,7 @@ import {
   singInGoogle,
   singOut,
 } from "../Controllers/auth";
-import { useUser } from "../context/user";
+import { useUserContext } from "../context/user";
 import { useNavigate, Link } from "react-router-dom";
 
 import { createUser, buscarUsuarioPorId, getUsuario } from "../Controllers/usuario";
@@ -13,7 +13,7 @@ import styles from "../CSS/Login.module.css";
 
 export default function Login() {
   const navigate = useNavigate();
-  const user = useUser();
+  const {user, userData} = useUserContext();
   //const usuario = useUser();
 
   function separarNombreApellido(nombreCompleto) {
@@ -27,8 +27,8 @@ export default function Login() {
     
     if (user) {
       
-      //console.log(tiporol)
-      if(user.role=="admin"){
+      console.log(userData,"sqwsw")
+      if(userData.role=="admin"){
         navigate("/Admin");
       }else{
 

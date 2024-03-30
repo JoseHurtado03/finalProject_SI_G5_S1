@@ -1,6 +1,6 @@
 import {buscarUsuario,getUsuario,cambiarGrupo} from "../Controllers/usuario"
 
-import {useUser} from "../context/user"
+import {useUserContext} from "../context/user"
 
 import { useEffect, useState } from "react"
 import styles from "../CSS/GroupCard.module.css"
@@ -12,7 +12,7 @@ export default function QuitGroup(id){
     
     const [grupo,setGrupo]= useState(null)
     const [grupoP,setGrupoP]= useState(null)
-    const currentuser=useUser()
+    const {user, userData}=useUserContext()
     const [visible,setVisible] = useState(true) //Este state es para que muestre o no el boton de quit group al igual que el titulo del grupo. 
     
     const handleUnsubscribe = () => {
@@ -20,8 +20,8 @@ export default function QuitGroup(id){
         console.log(id.id)
         
         
-        cambiarGrupo(currentuser.email, id);
-        quitarPersonaGrupo(currentuser.email, id.id)
+        cambiarGrupo(user.uid, id);
+        quitarPersonaGrupo(userData.email, id.id)
     
         setVisible(false);
       };
@@ -41,12 +41,12 @@ export default function QuitGroup(id){
 
 
     useEffect(()=>{
-        if(currentuser){
+        if(user){
 
             const uwu=async ()=>{
                 
                 
-                const usuario= await getUsuario(currentuser.email)
+                const usuario= await getUsuario(user.uid)
                 
                 setGrupoP(usuario.subscripciones)
 
@@ -57,7 +57,7 @@ export default function QuitGroup(id){
 
     }
 
-    ,[currentuser])
+    ,[user])
 
 
     return (

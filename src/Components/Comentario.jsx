@@ -9,7 +9,7 @@ function Comment({nombre,comentario}) {
     const HandleClick=()=>{
 
 
-        navigate(`/GroupPage/${nombre}`);
+        //navigate(`/GroupPage/${nombre}`);
 
     }
 

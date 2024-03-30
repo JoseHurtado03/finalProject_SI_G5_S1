@@ -6,7 +6,7 @@ import {
   singInGoogle,
   singOut,
 } from "../Controllers/auth";
-import { useUser } from "../context/user";
+import { useUserContext } from "../context/user";
 import { createUser,buscarUsuarioPorId } from "../Controllers/usuario";
 import styles from "../CSS/SignIn.module.css";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ export default function Sign() {
 
 
   const navigate = useNavigate();
-  const user = useUser();
+  const {user, userData} = useUserContext();
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -34,12 +34,14 @@ export default function Sign() {
 
   const handleSignin = async (e) => {
     const user = await createUserWithEmail(email, password);
+    const uid = user.user.uid
+    console.log(uid)
     if (user != null) {
       let role = "regular";
       if (userType === "admin") {
         role = "admin";
       }
-      await createUser(name, lastName, username, email, password, role);
+      await createUser(name, lastName, username, email, password, role, uid);
       navigate("/");
     } else {
       alert("Todos los campos son obligatorios");
@@ -54,30 +56,32 @@ export default function Sign() {
   useEffect(() => {
     if (user) {
       const comprove = async (id) => {
-        const nuevo = await buscarUsuarioPorId(id);
+        if(userData.role=="admin"){
+          navigate("/Admin");}
+        //const nuevo = await buscarUsuarioPorId(id);
 
-        if (nuevo) {
-          console.log("es nuebo");
-          //activar despues
-          navigate("/");
-        } else {
-          const NombreApellido = separarNombreApellido(user.displayName);
+        // if (nuevo) {
+        //   console.log("es nuebo");
+        //   //activar despues
+        //   navigate("/");
+        // } else {
+        //   const NombreApellido = separarNombreApellido(user.displayName);
 
-          const crear = async () => {
-            await createUser(
-              NombreApellido.nombre,
-              NombreApellido.apellido,
-              "username",
-              user.email,
-              "password"
-            );
-          };
+        //   const crear = async () => {
+        //     await createUser(
+        //       NombreApellido.nombre,
+        //       NombreApellido.apellido,
+        //       "username",
+        //       user.email,
+        //       "password"
+        //     );
+        //   };
 
-          crear();
+        //   crear();
 
-          //activar despues
-          navigate("/");
-        }
+        //   //activar despues
+        //   navigate("/");
+        // }
       };
       comprove(user.email);
       // navigate("/AppPage")

@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from '../Components/Header';
-import { useUser } from "../context/user";
+import {useUserContext } from "../context/user";
 import styles from  '../CSS/Search.module.css'
 
 export default function Search() {
-    const user = useUser();
+    const {user} = useUserContext();
     return (
     <div>
         <Header user={user}></Header>
