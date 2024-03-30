@@ -1,20 +1,57 @@
-import React from 'react'
-import Header from '../Components/Header';
-import {useUserContext } from "../context/user";
-import styles from  '../CSS/Search.module.css'
+import React from "react";
+import Header from "../Components/Header";
+import { useUser } from "../context/user";
+import styles from "../CSS/Search.module.css";
+import { useState } from "react";
+import { buscarGrupo } from "../Controllers/Groups";
+import TarjetaDispo from "../Components/TarjetaDispo";
 
 export default function Search() {
-    const {user} = useUserContext();
+  const [showGroup, setShowGroup] = useState(false);
+  const user = useUser();
+  const [group_name, setGrupo] = useState("");
+  const [dispo, setDispo] = useState("");
+  const handleSearch = async () => {
+    try {
+      const grupo = await buscarGrupo(group_name);
+      setDispo(grupo.Integrantes);
+      setShowGroup(true);
+      console.log(dispo.length);
+      console.log(grupo);
+    } catch (error) {
+      console.error("Error al buscar grupos:", error);
+    }
+  };
     return (
     <div>
-        <Header user={user}></Header>
-        <h1 className={styles.title}>¡Tenemos lo que buscas! Busca el grupo que prefieras</h1>
-        <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-            <div className={styles.cuadrito}>
-                <input placeholder="Ingresa el nombre del grupo" className={styles.input}></input>
-            </div>
-            <button className={styles.boton}>🔎</button>
+      <Header user={user}></Header>
+      <section className={styles.mainSection}>
+        <h1 className={styles.title}>
+          ¡Tenemos lo que buscas! Busca el grupo que prefieras
+        </h1>
+        <section
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          <div className={styles.cuadrito}>
+            <input
+              placeholder="Ingresa el nombre del grupo"
+              className={styles.input}
+              value={group_name}
+              onChange={(e) => setGrupo(e.target.value)}
+            ></input>
+          </div>
+          <button onClick={handleSearch} className={styles.boton}>
+            🔎
+          </button>
         </section>
+      </section>
+      {showGroup && (
+        <TarjetaDispo nombre={group_name} dispo={dispo.length}></TarjetaDispo>
+      )}
     </div>
-  )
+  );
 }

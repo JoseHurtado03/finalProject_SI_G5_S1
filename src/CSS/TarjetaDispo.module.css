@@ -1,0 +1,40 @@
+.carta {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  height: 186px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #ff8f50;
+  padding: 17px;
+
+  box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 118px;
+  height: 27px;
+  flex-shrink: 0;
+  color: #fff;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 145px;
+  height: 171px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: no-repeat;
+  display: flex;
+  justify-content: right;
+}

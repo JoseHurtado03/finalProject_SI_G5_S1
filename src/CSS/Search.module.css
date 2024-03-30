@@ -1,46 +1,55 @@
-.title{
-    width: 600px;
-    height: 317px;
-    color: #000;
-    text-align: center;
-    text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
-    font-family: "Kdam Thmor";
-    font-size: 50px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100px; /* 125% */
-    margin-left: 450px;
-    margin-bottom: -30px;
+.mainSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.cuadrito{
-    width: 1003px;
-    height: 109px;
-    border-radius: 30px 0px 0px 30px;
-    background: #D9D9D9;
-    box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+.title {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  height: 317px;
+  color: #000;
+  text-align: center;
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Kdam Thmor";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100px; /* 125% */
+  /* margin-left: 450px; */
+  margin-bottom: -30px;
 }
 
-.input{
-    width: 983px;
-    height: 90px;
-    border-radius: 30px 0px 0px 30px;
-    background: #FFF;
-    margin: 8px 0 0 7px;
-    text-align: center;
-    font-family: "Kdam Thmor";
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100px;
+.cuadrito {
+  width: 1003px;
+  height: 109px;
+  border-radius: 30px 0px 0px 30px;
+  background: #d9d9d9;
+  box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.boton{
-    width: 117px;
-    height: 109px;
-    border-radius: 0px 30px 30px 0px;
-    background: #FF833E;
-    box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-left: 20px;
-    font-size: 50px;
+.input {
+  width: 983px;
+  height: 90px;
+  border-radius: 30px 0px 0px 30px;
+  background: #fff;
+  margin: 8px 0 0 7px;
+  text-align: center;
+  font-family: "Kdam Thmor";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100px;
+}
+
+.boton {
+  width: 117px;
+  height: 109px;
+  border-radius: 0px 30px 30px 0px;
+  background: #ff833e;
+  box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 20px;
+  font-size: 50px;
 }
