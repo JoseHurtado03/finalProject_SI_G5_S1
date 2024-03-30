@@ -76,9 +76,9 @@ export async function buscarUsuario(correo, nombreg) {
   await setDoc(ref, data);
 }
 
-export async function subscribe(uid, idGrupo) {
+export async function subscribe(uid, userData, idGrupo) {
   let validation_boolean = await validateAvailability(idGrupo);
-  let validation_suscribed = await isSuscribed(uid, idGrupo);
+  let validation_suscribed = await isNotSuscribed(userData, idGrupo);
   console.log(validation_boolean, "and", validation_suscribed);
   if (validation_boolean && validation_suscribed) {
     const userDoc = await getDoc(doc(db, "Usuarios", uid));
@@ -98,12 +98,10 @@ export async function subscribe(uid, idGrupo) {
 
 
 
-export async function isSuscribed(uid, idGrupo) {
-  const suscription_group = await getDoc(
-    doc(db, "Usuarios", uid, "suscripciones", `${idGrupo}`)
-  );
-  console.log(suscription_group,"prueba");
-  if (suscription_group != null) {
+export async function isNotSuscribed(userData, idGrupo) {
+  const suscription_group = userData.subscripciones
+  console.log(suscription_group,idGrupo, "grupos") 
+  if (suscription_group.includes(idGrupo)) {
     return false;
   } else {
     return true;
