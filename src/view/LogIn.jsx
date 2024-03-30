@@ -5,11 +5,14 @@ import {
   singInGoogle,
   singOut,
 } from "../Controllers/auth";
-import { useUserContext } from "../context/user";
+import { UserContext, useUserContext } from "../context/user";
 import { useNavigate, Link } from "react-router-dom";
 
 import { createUser, buscarUsuarioPorId, getUsuario } from "../Controllers/usuario";
 import styles from "../CSS/Login.module.css";
+import { getAdditionalUserInfo, signInWithPopup } from "@firebase/auth";
+import { auth,db,googleProvider } from "../firebase";
+import { collection, doc, setDoc } from "@firebase/firestore";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -83,7 +86,49 @@ export default function Login() {
     // }
   };
 
+  async function handleClick() {
+
+    console.log("googlelogin")
+    const result = await signInWithPopup(auth, googleProvider);
+    const coleccionUsuario = collection(db,"Usuarios");
+    const infoRelativaU = await getAdditionalUserInfo(result);
+
+    if (infoRelativaU.isNewUser) {
+
+      const fullName = result.user.displayName;
+      const namesArray = fullName.split(' ');
+
+      const firstName2 = namesArray[0];
+      const lastName2 = namesArray.slice(1).join(' ');
+
+      const email = result.user.email;
+      const emailArray = email.split('@');
+
+      const username2 = emailArray[0];
+
+      await setDoc(doc(coleccionUsuario, result.user.uid), {
+        Apellido: lastName2,
+        Nombre: firstName2,
+        UserName: username2,
+        email: result.user.email,
+        password: "contrasena",
+        role: "regular",
+        subscripciones: []
+      });
+      //setUserData(result.user);
+      console.log(result.user)
+      //const [user, setUser] =  useState(result.user)
+    } else{
+    console.log("LOGIN FAILED, Try Again usuario registrado previamente");
+    }
+
+        
+  }
+
+
   const handleLogingGoogle = async (e) => {
+
+
     const user = await singInGoogle();
     console.log(user);
   };
@@ -126,7 +171,7 @@ export default function Login() {
           <button onClick={handleLogin} className={styles.mainButton}>LogIn</button>
 
 
-          <button onClick={handleLogingGoogle} className={styles.Google}>GOOGLE</button>
+          <button onClick={handleClick} className={styles.Google}>GOOGLE</button>
 
           <button onClick={handleBack} className={styles.homeButton}>Regresar</button>
         </section>

@@ -10,6 +10,9 @@ import { useUserContext } from "../context/user";
 import { createUser,buscarUsuarioPorId } from "../Controllers/usuario";
 import styles from "../CSS/SignIn.module.css";
 import { Link } from "react-router-dom";
+import { getAdditionalUserInfo, signInWithPopup } from "@firebase/auth";
+import { collection, doc, setDoc } from "@firebase/firestore";
+import { auth, db, googleProvider } from "../firebase";
 
 export default function Sign() {
 
@@ -47,6 +50,42 @@ export default function Sign() {
       alert("Todos los campos son obligatorios");
     }
   };
+
+  const handleGoogleClick = async () => {
+    const result = await signInWithPopup(auth, googleProvider);
+    const coleccionUsuario = collection(db, "Usuarios");
+    const infoRelativaU = await getAdditionalUserInfo(result);
+
+    if (infoRelativaU.isNewUser) {
+
+      const fullName = result.user.displayName;
+      const namesArray = fullName.split(' ');
+
+      const firstName2 = namesArray[0];
+      const lastName2 = namesArray.slice(1).join(' ');
+
+      const email = result.user.email;
+      const emailArray = email.split('@');
+
+      const username2 = emailArray[0];
+
+      await setDoc(doc(coleccionUsuario, result.user.uid), {
+        Apellido: lastName2,
+        Nombre: firstName2,
+        UserName: username2,
+        email: result.user.email,
+        password: "contrasena",
+        role: "regular",
+        subscripciones: []
+      });
+
+
+      const [user, setUser] =  useState(result.user);
+    } else{
+    console.log("LOGIN FAILED, Try Again usuario registrado previamente");
+    }
+
+};
 
   const handleLogingGoogle = async (e) => {
     const user = await singInGoogle();
@@ -168,7 +207,7 @@ export default function Sign() {
             SIGN IN
           </button>
         </section>
-        <button className={styles.Google} onClick={handleLogingGoogle}>Registrate con Google</button>
+        <button className={styles.Google} onClick={handleGoogleClick}>Registrate con Google</button>
         <Link to={"/Login"} style={{ marginTop: "20px" }}>
           ¿Ya tienes una cuenta? Inicia sesión
         </Link>
