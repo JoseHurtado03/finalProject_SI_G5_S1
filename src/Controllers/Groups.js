@@ -61,18 +61,33 @@ export async function agregarPersonaGrupo(uid, id) {
   const userDoc = await getDoc(doc(db, "Grupos", `${id}`));
   const userRef = doc(db, "Grupos", `${id}`);
   const grupo = userDoc.data();
+  let validation_boolean = isNotSuscribed(uid, id);
 
   const personas = grupo.Integrantes;
-  if (personas.length < 30) {
+  if (personas.length < 30 && validation_boolean) {
     console.log("success");
     personas.push(uid);
     await updateDoc(userRef, {
       Integrantes: personas,
     });
-  } else {
-    console.log(personas.length);
-
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    window.location.reload();
+  }
+  if (!validation_boolean) {
+    window.alert("El usuario se encuentra en el grupo");
+  }
+  if (personas.length >= 30) {
     window.alert("El grupo está lleno");
+  }
+}
+
+export async function isNotSuscribed(uid, id) {
+  const userDoc = await getDoc(doc(db, "Grupos", `${id}`));
+  const suscription_group = userDoc.Integrantes;
+  if (suscription_group.includes(uid)) {
+    return false;
+  } else {
+    return true;
   }
 }
 

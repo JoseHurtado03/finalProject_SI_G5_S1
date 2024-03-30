@@ -106,14 +106,15 @@ export async function subscribe(uid, userData, idGrupo) {
       subscripciones: subscriptions,
     });
     console.log("Success");
+    return true;
   } else {
     console.log("Not succes");
+    return false;
   }
 }
 
 export async function isNotSuscribed(userData, idGrupo) {
   const suscription_group = userData.subscripciones;
-  console.log(suscription_group, idGrupo, "grupos");
   if (suscription_group.includes(idGrupo)) {
     return false;
   } else {

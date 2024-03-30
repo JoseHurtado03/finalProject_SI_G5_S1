@@ -21,8 +21,8 @@ function GroupPage() {
 
   const [Comentario, setComentario] = useState("");
 
-  const [notSubscribed, setNotSubscribed] = useState(true);
-  const [subscrite, setSubscrite] = useState(false);
+  const [notSubscribed, setNotSubscribed] = useState(false);
+  const [subscrite, setSubscrite] = useState(true);
 
   const [nombreUsuario, setNombreUsuario] = useState("");
 
@@ -44,8 +44,8 @@ function GroupPage() {
         const gruposUsuario = usuario.subscripciones;
         console.log(gruposUsuario, params.id, "hahha");
         if (gruposUsuario.includes(params.id)) {
-          setNotSubscribed(false);
-          setSubscrite(true);
+          setNotSubscribed(true);
+          setSubscrite(false);
         }
       };
 
@@ -58,8 +58,7 @@ function GroupPage() {
       const uid = user.uid;
       subscribe(uid, userData, params.id);
       agregarPersonaGrupo(uid, params.id);
-      setNotSubscribed(false);
-      setSubscrite(true);
+      window.alert("Success!");
     } else {
       window.alert("Inicie sesión xfa");
     }
@@ -113,13 +112,7 @@ function GroupPage() {
             +
           </button>
         )}
-        {subscrite ? (
-          ""
-        ) : (
-          <button onClick={handleClickSubscribe} className={styles.subcribe}>
-            ✔
-          </button>
-        )}
+        {subscrite ? "" : <button className={styles.subcribe}>✔</button>}
 
         <div>
           <input
