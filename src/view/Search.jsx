@@ -8,7 +8,7 @@ import TarjetaDispo from "../Components/TarjetaDispo";
 
 export default function Search() {
   const [showGroup, setShowGroup] = useState(false);
-  const {user} = useUserContext();
+  const { user } = useUserContext();
   const [group_name, setGrupo] = useState("");
   const [dispo, setDispo] = useState("");
   const handleSearch = async () => {
@@ -22,7 +22,7 @@ export default function Search() {
       console.error("Error al buscar grupos:", error);
     }
   };
-    return (
+  return (
     <div>
       <Header user={user}></Header>
       <section className={styles.mainSection}>

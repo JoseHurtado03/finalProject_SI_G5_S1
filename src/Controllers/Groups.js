@@ -45,6 +45,8 @@ export async function quitarPersonaGrupo(correo, id) {
   await updateDoc(userRef, {
     Integrantes: personas,
   });
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  window.location.reload();
 }
 
 export async function validateAvailability(id) {

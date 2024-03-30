@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import {
   AgregarComentarioGrupo,
   agregarPersonaGrupo,
+  quitarPersonaGrupo,
 } from "../Controllers/Groups";
 import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
 import Paypal from "../Components/paypal";
 import styles from "../CSS/PaginaGrupo.module.css";
 import { useUserContext } from "../context/user";
-import { getUsuario, subscribe } from "../Controllers/usuario";
+import { getUsuario, subscribe, cambiarGrupo } from "../Controllers/usuario";
 
 function GroupPage() {
   const params = useParams();
@@ -64,6 +65,13 @@ function GroupPage() {
     }
   };
 
+  const handleClickUnsubscribe = () => {
+    console.log(user.uid);
+
+    cambiarGrupo(user.uid, params.id);
+    quitarPersonaGrupo(user.uid, params.id);
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -112,7 +120,13 @@ function GroupPage() {
             +
           </button>
         )}
-        {subscrite ? "" : <button className={styles.subcribe}>✔</button>}
+        {subscrite ? (
+          ""
+        ) : (
+          <button onClick={handleClickUnsubscribe} className={styles.subcribe}>
+            ✔
+          </button>
+        )}
 
         <div>
           <input
