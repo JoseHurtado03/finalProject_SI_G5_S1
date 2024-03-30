@@ -50,22 +50,22 @@ export async function quitarPersonaGrupo(correo, id) {
 export async function validateAvailability(id) {
   const userDoc = await getDoc(doc(db, "Grupos", `${id}`));
   const grupo = userDoc.data();
-  if (grupo.Integrantes.length >= 2) {
+  if (grupo.Integrantes.length >= 30) {
     return false;
   } else {
     return true;
   }
 }
 
-export async function agregarPersonaGrupo(correo, id) {
+export async function agregarPersonaGrupo(uid, id) {
   const userDoc = await getDoc(doc(db, "Grupos", `${id}`));
   const userRef = doc(db, "Grupos", `${id}`);
   const grupo = userDoc.data();
 
   const personas = grupo.Integrantes;
-  if (personas.length < 2) {
+  if (personas.length < 30) {
     console.log("success");
-    personas.push(correo);
+    personas.push(uid);
     await updateDoc(userRef, {
       Integrantes: personas,
     });

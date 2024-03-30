@@ -30,7 +30,10 @@ export default function Login() {
       console.log(userData,"sqwsw")
       if(userData.role=="admin"){
         navigate("/Admin");
-      }else{
+      }else if(userData.role=="regular"){
+        navigate("/");
+      } 
+      else{
 
 
 
@@ -41,27 +44,27 @@ export default function Login() {
         if (nuevo) {
           console.log("es nuevo");
           //activar despues
-          navigate("/");
-        } else {
-          const NombreApellido = separarNombreApellido(user.displayName);
+          navigate("/");}
+        // else {
+        //   const NombreApellido = separarNombreApellido(user.displayName);
 
-          const crear = async () => {
-            await createUser(
-              NombreApellido.nombre,
-              NombreApellido.apellido,
-              "username",
-              user.email,
-              "password"
-            );
-          };
+        //   const crear = async () => {
+        //     await createUser(
+        //       NombreApellido.nombre,
+        //       NombreApellido.apellido,
+        //       "username",
+        //       userData.email,
+        //       "password"
+        //     );
+        //   };
 
-          crear();
+        //   crear();
 
-          //activar despues
-          navigate("/");
-        }
+        //   //activar despues
+        //   navigate("/");
+        // }
       };
-      comprove(user.email);
+      comprove(userData.email);
       // navigate("/AppPage")
     }
   }
