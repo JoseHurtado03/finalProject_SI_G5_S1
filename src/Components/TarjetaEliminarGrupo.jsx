@@ -1,6 +1,7 @@
 //import { db } from '../firebase.js';
 import useGrupo from "../CustomHooks/useGroup";
 import { DeleteGrupo } from "../Controllers/Groups";
+import styles from '../CSS/DeleteGroup.module.css';
 
 export default function EliminarGrupo({  nombre }) {
 
@@ -27,11 +28,10 @@ export default function EliminarGrupo({  nombre }) {
     }
 
     return (
-        <div style={{backgroundColor:"beige", margin:"1rem"}}>
+        <div className={styles.card}>
 
-            <div>{nombre}</div>
-            <button onClick={handleEliminarGrupo}>Borrar</button>
-
+            <div className={styles.nameGroup}>{nombre}</div>
+            <button onClick={handleEliminarGrupo} className={styles.deleteB}>Borrar</button>
 
         </div>
     );
