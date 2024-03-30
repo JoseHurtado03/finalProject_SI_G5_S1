@@ -6,6 +6,7 @@ import {
   agregarPersonaGrupo,
   quitarPersonaGrupo,
 } from "../Controllers/Groups";
+import Header from "../Components/Header";
 import useGrupo from "../CustomHooks/useGroup";
 import Comment from "../Components/Comentario";
 import Paypal from "../Components/paypal";
@@ -82,6 +83,7 @@ function GroupPage() {
 
   return (
     <div style={{ backgroundColor: "#FF8F50" }}>
+      <Header user={user}></Header>
       {grupo ? (
         <div
           style={{
