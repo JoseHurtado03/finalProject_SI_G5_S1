@@ -58,6 +58,9 @@ export default function Sign() {
       const comprove = async (id) => {
         if(userData.role=="admin"){
           navigate("/Admin");}
+          else if(userData.role=="regular"){
+            navigate("/");
+          } 
         //const nuevo = await buscarUsuarioPorId(id);
 
         // if (nuevo) {

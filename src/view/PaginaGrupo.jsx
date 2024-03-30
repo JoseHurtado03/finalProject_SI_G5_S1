@@ -45,9 +45,8 @@ function GroupPage() {
             setNombreUsuario(usuario.Nombre +" "+usuario.Apellido);
             
             const gruposUsuario=usuario.subscripciones
-
+            console.log(gruposUsuario, params.id,"hahha")
             if(gruposUsuario.includes(params.id)){
-              console.log(params.id,"AAAA")
               setNotSubscribed(false);
               setSubscrite(true);
             }
