@@ -56,7 +56,7 @@ function GroupPage() {
   const handleClickSubscribe = () => {
     if (user != null) {
       const uid = user.uid;
-      subscribe(uid, params.id);
+      subscribe(uid, userData, params.id);
       agregarPersonaGrupo(uid, params.id);
       setNotSubscribed(false);
       setSubscrite(true);
