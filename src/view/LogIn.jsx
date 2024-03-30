@@ -8,15 +8,19 @@ import {
 import { UserContext, useUserContext } from "../context/user";
 import { useNavigate, Link } from "react-router-dom";
 
-import { createUser, buscarUsuarioPorId, getUsuario } from "../Controllers/usuario";
+import {
+  createUser,
+  buscarUsuarioPorId,
+  getUsuario,
+} from "../Controllers/usuario";
 import styles from "../CSS/Login.module.css";
 import { getAdditionalUserInfo, signInWithPopup } from "@firebase/auth";
-import { auth,db,googleProvider } from "../firebase";
+import { auth, db, googleProvider } from "../firebase";
 import { collection, doc, setDoc } from "@firebase/firestore";
 
 export default function Login() {
   const navigate = useNavigate();
-  const {user, userData} = useUserContext();
+  const { user, userData } = useUserContext();
   //const usuario = useUser();
 
   function separarNombreApellido(nombreCompleto) {
@@ -25,52 +29,46 @@ export default function Login() {
     const apellido = partes.slice(1).join(" "); // Los elementos restantes son el apellido
     return { nombre, apellido };
   }
-  
+
   useEffect(() => {
-    
     if (userData) {
-      
-      console.log(userData,"sqwsw")
-      if(userData.role=="admin"){
+      console.log(userData, "sqwsw");
+      if (userData.role == "admin") {
         navigate("/Admin");
-      }else if(userData.role=="regular"){
+      } else if (userData.role == "regular") {
         navigate("/");
-      } 
-      else{
+      } else {
+        const comprove = async (id) => {
+          const nuevo = await buscarUsuarioPorId(id);
 
+          if (nuevo) {
+            console.log("es nuevo");
+            //activar despues
+            navigate("/");
+          }
+          // else {
+          //   const NombreApellido = separarNombreApellido(user.displayName);
 
+          //   const crear = async () => {
+          //     await createUser(
+          //       NombreApellido.nombre,
+          //       NombreApellido.apellido,
+          //       "username",
+          //       userData.email,
+          //       "password"
+          //     );
+          //   };
 
+          //   crear();
 
-      const comprove = async (id) => {
-        const nuevo = await buscarUsuarioPorId(id);
-
-        if (nuevo) {
-          console.log("es nuevo");
-          //activar despues
-          navigate("/");}
-        // else {
-        //   const NombreApellido = separarNombreApellido(user.displayName);
-
-        //   const crear = async () => {
-        //     await createUser(
-        //       NombreApellido.nombre,
-        //       NombreApellido.apellido,
-        //       "username",
-        //       userData.email,
-        //       "password"
-        //     );
-        //   };
-
-        //   crear();
-
-        //   //activar despues
-        //   navigate("/");
-        // }
-      };
-      comprove(userData.email);
-      // navigate("/AppPage")
+          //   //activar despues
+          //   navigate("/");
+          // }
+        };
+        comprove(userData.email);
+        // navigate("/AppPage")
+      }
     }
-  }
   }, [userData, navigate]);
 
   const [email, setEmail] = useState("");
@@ -87,22 +85,20 @@ export default function Login() {
   };
 
   async function handleClick() {
-
-    console.log("googlelogin")
+    console.log("googlelogin");
     const result = await signInWithPopup(auth, googleProvider);
-    const coleccionUsuario = collection(db,"Usuarios");
+    const coleccionUsuario = collection(db, "Usuarios");
     const infoRelativaU = await getAdditionalUserInfo(result);
 
     if (infoRelativaU.isNewUser) {
-
       const fullName = result.user.displayName;
-      const namesArray = fullName.split(' ');
+      const namesArray = fullName.split(" ");
 
       const firstName2 = namesArray[0];
-      const lastName2 = namesArray.slice(1).join(' ');
+      const lastName2 = namesArray.slice(1).join(" ");
 
       const email = result.user.email;
-      const emailArray = email.split('@');
+      const emailArray = email.split("@");
 
       const username2 = emailArray[0];
 
@@ -113,22 +109,17 @@ export default function Login() {
         email: result.user.email,
         password: "contrasena",
         role: "regular",
-        subscripciones: []
+        subscripciones: [],
       });
       //setUserData(result.user);
-      console.log(result.user)
+      console.log(result.user);
       //const [user, setUser] =  useState(result.user)
-    } else{
-    console.log("LOGIN FAILED, Try Again usuario registrado previamente");
+    } else {
+      console.log("LOGIN FAILED, Try Again usuario registrado previamente");
     }
-
-        
   }
 
-
   const handleLogingGoogle = async (e) => {
-
-
     const user = await singInGoogle();
     console.log(user);
   };
@@ -166,14 +157,17 @@ export default function Login() {
           ></input>
         </section>
         <section style={{ marginBottom: "50px" }}>
+          <button onClick={handleLogin} className={styles.mainButton}>
+            LogIn
+          </button>
 
-          
-          <button onClick={handleLogin} className={styles.mainButton}>LogIn</button>
+          <button onClick={handleClick} className={styles.Google}>
+            Google
+          </button>
 
-
-          <button onClick={handleClick} className={styles.Google}>GOOGLE</button>
-
-          <button onClick={handleBack} className={styles.homeButton}>Regresar</button>
+          <button onClick={handleBack} className={styles.homeButton}>
+            Regresar
+          </button>
         </section>
         <Link to={"/SignIn"}>¿No tienes una cuenta? Regístrate</Link>
       </section>
