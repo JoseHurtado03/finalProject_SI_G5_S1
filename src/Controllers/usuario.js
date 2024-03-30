@@ -14,13 +14,27 @@ import { validateAvailability } from "./Groups";
 
 //Modificar usuario, buscar usuario.
 
-export async function createUser(Nombre,Apellido,UserName,email,password,role){
-    //const id = generateId()
-    console.log("se creo")
-    const userCollection=doc(collection(db,"Usuarios"),uid)
-    const usuario={Nombre,Apellido,UserName,email,password,role,subscripciones:[]}
-    await setDoc(userCollection,usuario)
-    
+export async function createUser(
+  Nombre,
+  Apellido,
+  UserName,
+  email,
+  password,
+  role
+) {
+  //const id = generateId()
+  console.log("se creo");
+  const userCollection = doc(collection(db, "Usuarios"), uid);
+  const usuario = {
+    Nombre,
+    Apellido,
+    UserName,
+    email,
+    password,
+    role,
+    subscripciones: [],
+  };
+  await setDoc(userCollection, usuario);
 }
 
 export async function buscarUsuarioPorId(userId) {
@@ -96,11 +110,9 @@ export async function subscribe(correo, idGrupo) {
   }
 }
 
-
-
 export async function isSuscribed(correo, idGrupo) {
   const suscription_group = await getDoc(
-    doc(db, "Grupos", `${correo}`, "suscripciones", `${idGrupo}`)
+    doc(db, "Usuarios", `${correo}`, "suscripciones", `${idGrupo}`)
   );
   console.log(suscription_group);
   if (suscription_group != null) {
@@ -109,21 +121,13 @@ export async function isSuscribed(correo, idGrupo) {
     return true;
   }
 }
-export async function getUsuario(uid){
+export async function getUsuario(uid) {
+  const userDoc = await getDoc(doc(db, "Usuarios", uid));
 
-      
-  const userDoc= await getDoc(doc(db,"Usuarios",uid))
+  const usuario = userDoc.data();
 
-  const usuario=userDoc.data()
-  
-  
- 
-  return usuario
-
-    
+  return usuario;
 }
-
-
 
 async function getUser(email) {
   const groupsCollection = collection(db, "Clubes");
@@ -154,29 +158,15 @@ export async function cambiarInfoUsuario(correo, Nombref, Apellidof, juegof) {
   await setDoc(ref, data);
 }
 
-export async function cambiarGrupo(uid,id){
+export async function cambiarGrupo(uid, id) {
+  const userDoc = await getDoc(doc(db, "Usuarios", uid));
+  const userRef = doc(db, "Usuarios", uid);
+  const usuario = userDoc.data();
 
-    const userDoc= await getDoc(doc(db,"Usuarios",uid))
-    const userRef = doc(db,"Usuarios",uid);
-    const usuario=userDoc.data()
-    
-    const groups=usuario.subscripciones        
-    let index = groups.indexOf(id);
-    
-    
-    groups.splice(index, 1);
+  const groups = usuario.subscripciones;
+  let index = groups.indexOf(id);
 
-    
-
-
-    
-
-
-  
-    
-    
-    
-    
+  groups.splice(index, 1);
 
   await updateDoc(userRef, {
     subscripciones: groups,
