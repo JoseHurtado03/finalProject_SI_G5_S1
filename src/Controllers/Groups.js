@@ -50,7 +50,7 @@ export async function quitarPersonaGrupo(correo, id) {
 export async function validateAvailability(id) {
   const userDoc = await getDoc(doc(db, "Grupos", `${id}`));
   const grupo = userDoc.data();
-  if (grupo.Integrantes.length >= 2) {
+  if (grupo.Integrantes.length >= 30) {
     return false;
   } else {
     return true;

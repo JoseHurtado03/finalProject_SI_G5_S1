@@ -14,7 +14,7 @@ import { validateAvailability } from "./Groups";
 
 //Modificar usuario, buscar usuario.
 
-export async function createUser(Nombre,Apellido,UserName,email,password,role){
+export async function createUser(Nombre,Apellido,UserName,email,password,role,uid){
     //const id = generateId()
     console.log("se creo")
     const userCollection=doc(collection(db,"Usuarios"),uid)
@@ -76,9 +76,9 @@ export async function buscarUsuario(correo, nombreg) {
   await setDoc(ref, data);
 }
 
-export async function subscribe(correo, idGrupo) {
+export async function subscribe(uid, idGrupo) {
   let validation_boolean = await validateAvailability(idGrupo);
-  let validation_suscribed = await isSuscribed(correo, idGrupo);
+  let validation_suscribed = await isSuscribed(uid, idGrupo);
   console.log(validation_boolean, "and", validation_suscribed);
   if (validation_boolean && validation_suscribed) {
     const userDoc = await getDoc(doc(db, "Usuarios", uid));
@@ -98,9 +98,9 @@ export async function subscribe(correo, idGrupo) {
 
 
 
-export async function isSuscribed(correo, idGrupo) {
+export async function isSuscribed(uid, idGrupo) {
   const suscription_group = await getDoc(
-    doc(db, "Grupos", `${correo}`, "suscripciones", `${idGrupo}`)
+    doc(db, "Usuarios", uid, "suscripciones", `${idGrupo}`)
   );
   console.log(suscription_group);
   if (suscription_group != null) {

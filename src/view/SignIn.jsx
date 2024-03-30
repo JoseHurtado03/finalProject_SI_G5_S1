@@ -54,7 +54,7 @@ export default function Sign() {
   };
 
   useEffect(() => {
-    if (user) {
+    if (userData) {
       const comprove = async (id) => {
         if(userData.role=="admin"){
           navigate("/Admin");}
@@ -83,10 +83,10 @@ export default function Sign() {
         //   navigate("/");
         // }
       };
-      comprove(user.email);
+      comprove(userData.email);
       // navigate("/AppPage")
     }
-  }, [user, navigate]);
+  }, [userData, navigate]);
 
 
   return (

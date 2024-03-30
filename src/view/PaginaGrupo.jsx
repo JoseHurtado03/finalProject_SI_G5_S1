@@ -47,6 +47,7 @@ function GroupPage() {
             const gruposUsuario=usuario.subscripciones
 
             if(gruposUsuario.includes(params.id)){
+              console.log(params.id,"AAAA")
               setNotSubscribed(false);
               setSubscrite(true);
             }
@@ -61,7 +62,7 @@ function GroupPage() {
 
 
 
-},[user])
+},[userData])
 
 
   const handleClickSubscribe = () => {
