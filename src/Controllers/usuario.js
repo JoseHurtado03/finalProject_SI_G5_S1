@@ -138,24 +138,18 @@ async function getUser(email) {
 }
 
 //se puede hacer de una manera mejor
-export async function cambiarInfoUsuario(correo, Nombref, Apellidof, juegof) {
-  const userDoc = await getDoc(doc(db, "Usuarios", `${correo}`));
+export async function cambiarInfoUsuario(uid, Nombref, Apellidof ) {
+  const userDoc= await getDoc(doc(db,"Usuarios",uid))
+  const userRef = doc(db,"Usuarios",uid);
 
-  const usuario = userDoc.data();
+  
 
-  const Nombre = Nombref;
-  const Apellido = Apellidof;
-  const UserName = us.UserName;
-  const email = us.email;
-  const password = us.password;
-  const grupos = us.grupos;
-  const juego = juegof;
 
-  const data = { Nombre, Apellido, UserName, email, grupos, password, juego };
+await updateDoc(userRef, {
+  Nombre: Nombref,
+  Apellido:Apellidof
 
-  const ref = doc(ususariosCollection, correo);
-
-  await setDoc(ref, data);
+});
 }
 
 export async function cambiarGrupo(uid, id) {
