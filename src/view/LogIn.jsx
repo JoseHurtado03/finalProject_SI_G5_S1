@@ -25,7 +25,7 @@ export default function Login() {
   
   useEffect(() => {
     
-    if (user) {
+    if (userData) {
       
       console.log(userData,"sqwsw")
       if(userData.role=="admin"){
@@ -65,7 +65,7 @@ export default function Login() {
       // navigate("/AppPage")
     }
   }
-  }, [user, navigate]);
+  }, [userData, navigate]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

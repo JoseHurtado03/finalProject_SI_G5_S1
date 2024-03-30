@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../Components/Header";
-import { useUser } from "../context/user";
+import { useUserContext } from "../context/user";
 import styles from "../CSS/Search.module.css";
 import { useState } from "react";
 import { buscarGrupo } from "../Controllers/Groups";
@@ -8,7 +8,7 @@ import TarjetaDispo from "../Components/TarjetaDispo";
 
 export default function Search() {
   const [showGroup, setShowGroup] = useState(false);
-  const user = useUser();
+  const {user} = useUserContext();
   const [group_name, setGrupo] = useState("");
   const [dispo, setDispo] = useState("");
   const handleSearch = async () => {
