@@ -30,11 +30,17 @@ export default function Sign() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("regular");
 
   const handleSignin = async (e) => {
     const user = await createUserWithEmail(email, password);
     if (user != null) {
-      await createUser(name, lastName, username, email, password);
+      let role = "regular";
+      if (userType === "admin") {
+        role = "admin";
+      }
+      await createUser(name, lastName, username, email, password, role);
+      navigate("/");
     } else {
       alert("Todos los campos son obligatorios");
     }
@@ -133,6 +139,17 @@ export default function Sign() {
           className={styles.input}
           placeholder="Contraseña"
         ></input>
+
+        <select
+          value={userType}
+          onChange={(e) => setUserType(e.target.value)}
+          className={styles.input}
+        >
+          <option value="regular">Usuario Regular</option>
+          <option value="admin">Admin</option>
+        </select>
+
+
         <section
           style={{
             display: "flex",

@@ -14,7 +14,14 @@ import { validateAvailability } from "./Groups";
 
 //Modificar usuario, buscar usuario.
 
-export async function createUser(Nombre, Apellido, UserName, email, password) {
+export async function createUser(
+  Nombre,
+  Apellido,
+  UserName,
+  email,
+  password,
+  role
+) {
   //const id = generateId()
   console.log("se creo");
   const userCollection = doc(collection(db, "Usuarios"), email);
@@ -24,6 +31,7 @@ export async function createUser(Nombre, Apellido, UserName, email, password) {
     UserName,
     email,
     password,
+    role,
     subscripciones: [],
   };
   await setDoc(userCollection, usuario);

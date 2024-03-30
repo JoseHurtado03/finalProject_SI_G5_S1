@@ -8,12 +8,13 @@ import {
 import { useUser } from "../context/user";
 import { useNavigate, Link } from "react-router-dom";
 
-import { createUser, buscarUsuarioPorId } from "../Controllers/usuario";
+import { createUser, buscarUsuarioPorId, getUsuario } from "../Controllers/usuario";
 import styles from "../CSS/Login.module.css";
 
 export default function Login() {
   const navigate = useNavigate();
   const user = useUser();
+  //const usuario = useUser();
 
   function separarNombreApellido(nombreCompleto) {
     const partes = nombreCompleto.split(" "); // Divide la cadena en un array de substrings separados por espacios
@@ -21,11 +22,13 @@ export default function Login() {
     const apellido = partes.slice(1).join(" "); // Los elementos restantes son el apellido
     return { nombre, apellido };
   }
-
+  
   useEffect(() => {
+    
     if (user) {
-
-      if(user.email=="admin@gmail.com"){
+      
+      //console.log(tiporol)
+      if(user.role=="admin"){
         navigate("/Admin");
       }else{
 
@@ -36,7 +39,7 @@ export default function Login() {
         const nuevo = await buscarUsuarioPorId(id);
 
         if (nuevo) {
-          console.log("es nuebo");
+          console.log("es nuevo");
           //activar despues
           navigate("/");
         } else {
@@ -66,9 +69,15 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //const [tiporol, settiporol] = useState("")
 
   const handleLogin = async (e) => {
     const user = await SingInwithEmail(email, password);
+    //const usuario= await getUsuario(user.email)
+    // if (usuario) {
+    //   console.log(usuario.role)
+    //   settiporol(usuario.role);
+    // }
   };
 
   const handleLogingGoogle = async (e) => {
