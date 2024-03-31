@@ -1,0 +1,70 @@
+.mainTitle{
+    color: #FFF;
+    text-align: center;
+    text-shadow: 10.006px 10.006px 4.003px rgba(255, 255, 255, 0.25);
+    font-family: "Kdam Thmor";
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 186.172px; /* 155.143% */
+    margin-left: 70px;
+}
+
+.mission{
+    height: 260px;
+    width: 400px;
+    align-self: stretch;
+    background: #013088;
+    box-shadow: 10px 10px 4px 0px rgba(255, 255, 255, 0.25);
+    color: white;
+    padding: 20px;
+    margin: 20px 40px 0 0;
+}
+
+.vision{
+    height: 260px;
+    width: 400px;
+    align-self: stretch;
+    background: #ffffff;
+    box-shadow: 10px 10px 4px 0px rgba(255, 255, 255, 0.25);
+    color: black;
+    padding: 20px;
+    margin: 40px 40px 0 0;
+}
+
+.subcribe{
+    width: 78px;
+    height: 78px;
+    fill: #FFF;
+    filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+    background-color: #FF7600;
+    border-radius: 50px;
+    font-size: 70px;
+    color:#ffffff;
+    margin: -40px 20px 0 20px
+}
+
+.sendButton{
+    width: 87px;
+    height: 80px;
+    border-radius: 0px 30px 30px 0px;
+    background: #367CFF;
+    box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: -60px;
+}
+
+.inputMsg{
+    width: 272px;
+    height: 78px;
+    border-radius: 30px 0px 0px 30px;
+    background: #FFF;
+    box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-right: 10px;
+    margin-top: -60px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

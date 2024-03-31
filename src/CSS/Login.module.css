@@ -1,0 +1,142 @@
+.mainTitle {
+  width: 306px;
+  height: 63px;
+  color: #000;
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  display: flex;
+  height: 35px;
+  width: 210px;
+  align-items: center;
+  padding: 15px 48px 15px 43px;
+  border-radius: 20px;
+  border: 1px solid #bcbcbc;
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  color: #000000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.mainButton {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #f6821f;
+  background: #f6821f;
+  box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+
+  color: #fff;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.fields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.leftImg {
+  width: 800px;
+  height: 650px;
+  background-image: url(https://www.unimet.edu.ve/wp-content/uploads/2023/08/FOTOS-CAMPUS-UNIMET-1030x687-1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex: 1;
+  background-position: right;
+}
+
+/* .homeButton {
+  width: 170px;
+  height: 41.366px;
+  border-radius: 10px;
+  background: #f6821f;
+  box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #000;
+  font-family: Inter;
+  font-size: 15.61px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 40px;
+} */
+
+.homeButton {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #d8d8d8;
+  background: #f6821f;
+  box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 20px;
+  color: #fff;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.rightColumn {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Google {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #d8d8d8;
+  background: #fff;
+  box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 20px;
+  color: #000000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  margin-right: 10px;
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+}
