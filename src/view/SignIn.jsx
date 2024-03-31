@@ -176,6 +176,7 @@ export default function Sign() {
           onChange={(e) => setPassword(e.target.value)}
           className={styles.input}
           placeholder="Contraseña"
+          type="password"
         ></input>
 
         <select

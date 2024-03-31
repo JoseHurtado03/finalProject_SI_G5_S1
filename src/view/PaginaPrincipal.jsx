@@ -14,6 +14,7 @@ function MainPage() {
   return (
     <>
       <div>
+        <Header user={user}></Header>
         <section>
           <h1 className={styles.mainTitle}>¿Buscas formar parte de alguna agrupación estudiantil?
           ¡MetroGroups es para ti!</h1>
@@ -39,11 +40,11 @@ function MainPage() {
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFAA2A'}}>
           <section>
             <h2 className={styles.valueTitle}>Visión</h2>
-            <h3 className={styles.valueText}>Ser la plataforma líder en la gestión y promoción de las Agrupaciones Estudiantiles de la Universidad Metropolitana. Nuestra visión es fomentar la participación activa de la comunidad estudiantil en actividades recreativas, culturales, deportivas y científicas, impulsando el sentido de pertenencia y liderazgo en un entorno colaborativo y diverso.</h3>
+            <h3 className={styles.valueText}>Crear una plataforma virtual integral que sirva como centro de gestión e información para las agrupaciones estudiantiles de la Universidad Metropolitana. El objetivo es abordar de manera eficiente la creciente necesidad de centralizar la información y la gestión de los diversos grupos estudiantiles presentes en el campus, fomentando la colaboración, la participación activa y el intercambio de ideas entre ellos.</h3>
             <h2 className={styles.valueTitle}>Misión</h2>
-            <h3 className={styles.valueText}>Nuestra misión es proporcionar una plataforma integral y accesible que facilite la gestión y difusión de las Agrupaciones Estudiantiles de la Universidad Metropolitana. Nos comprometemos a ofrecer herramientas innovadoras que promuevan el trabajo en equipo, el desarrollo de habilidades y el intercambio de conocimientos entre los estudiantes.</h3>
+            <h3 className={styles.valueText}>Desarrollar una plataforma web que facilite la gestión, la visualización y el registro de los grupos estudiantiles encontrados la Universidad Metropolitana, para promover la participación estudiantil y ofrecer una herramienta efectiva para la interacción con los grupos, para así permitir a los estudiantes encontrar, afiliarse, contribuir y dar feedback sobre las agrupaciones de manera eficiente y efectiva.</h3>
           </section>
-          <section className={styles.foto}>Logo de la página</section>
+          <img src={'/Logo.png'} alt="club" className={styles.foto}/>
         </section>
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFE9D0'}}>
           <section className={styles.foto}></section>
@@ -66,10 +67,10 @@ function MainPage() {
             <h3 className={styles.info}>Puedes escoger entre 36 agrupaciones estudiantiles</h3>
           </section>
         </section>
-        <section>
-        <h2 className={styles.subTitle}>Información de Contacto:</h2>
-        <h3 className={styles.text}>Telefono: 0412-0117286</h3>
-        <h3 className={styles.text}>Correo: angel.carrero@correo.unimet.edu.ve</h3>
+        <section style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor:'black'}}>
+          <h2 className={styles.subTitle} style={{fontSize:"30px", color: "white", height:"20px"}}>Información de Contacto:</h2>
+          <h3 className={styles.text} style={{color:"white", marginLeft:"10px"}}>Teléfono: (+58)412-0117286</h3>
+          <h3 className={styles.text} style={{color:"white", marginLeft:"10px"}}>Correo: angel.carrero@correo.unimet.edu.ve</h3>
         </section>
       </div>
     </>

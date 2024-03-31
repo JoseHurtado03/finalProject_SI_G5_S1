@@ -145,6 +145,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Contrasena"
             className={styles.input}
+            type="password"
           ></input>
         </section>
         <section style={{ marginBottom: "50px" }}>
