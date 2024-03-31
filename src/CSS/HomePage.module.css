@@ -9,6 +9,8 @@
     font-weight: 400;
     line-height: 100px; /* 125% */
     text-align: center;
+    display: flex;
+    margin-left: 10%;
 }
 
 .subTitle{
@@ -73,7 +75,7 @@
 }
 
 .logo {
-    background-image: url('../../public/Logo.png');
+    background-image: url('../../Logo.png');
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -91,3 +93,24 @@
     display: flex;
     text-align: left;
 }
+
+
+.foto_Agrupacion{
+    width: 575px;
+    height: 558px;
+    border-radius: 46px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-image: url(../../public/imagen_agrupacion.jpg);
+    margin-top: 50px;
+}
+
+.foto_Agrupacion2{
+    width: 575px;
+    height: 558px;
+    border-radius: 46px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-image: url(../../public/imagen_Mision.jpg);
+    margin-top: 50px;
+}
+
+

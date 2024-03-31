@@ -46,7 +46,7 @@ function MainPage() {
           <img src={'/Logo.png'} alt="club" className={styles.foto}/>
         </section>
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFE9D0'}}>
-          <section className={styles.foto}></section>
+          <section className={styles.foto_Agrupacion2}></section>
           <section>
             <h2 className={styles.subTitle}>¡Todas tienen algo distinto que ofrecerte!</h2>
             <h3 className={styles.info}>¡Contamos con información completa y actualizada de las agrupaciones para que puedas escoger la que más te guste!</h3>
@@ -57,7 +57,7 @@ function MainPage() {
             <h2 className={styles.subTitle}>Te proporcionamos una herramienta a la palma de tu mano</h2>
             <h3 className={styles.info}>¡Somos un recurso indispensable para la selección de tus grupos favoritos!</h3>
           </section>
-          <section className={styles.foto}></section>
+          <section className={styles.foto_Agrupacion}></section>
         </section>
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor:'#F90'}}>
           <section className={styles.foto}></section>
@@ -67,9 +67,9 @@ function MainPage() {
           </section>
         </section>
         <section style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor:'black'}}>
-          <h2 className={styles.subTitle} style={{fontSize:"30px", color: "white", height:"20px"}}>Información de Contacto:</h2>
-          <h3 className={styles.text} style={{color:"white", marginLeft:"10px"}}>Teléfono: (+58)412-0117286</h3>
-          <h3 className={styles.text} style={{color:"white", marginLeft:"10px"}}>Correo: angel.carrero@correo.unimet.edu.ve</h3>
+          <h2 className={styles.subTitle} style={{fontSize:"30px", color: "white", height:"20px", marginLeft:"10%"}}>Información de Contacto:</h2>
+          <h3 className={styles.text} style={{color:"white", marginLeft:"10%", marginTop:"10%"}}>Teléfono: (+58)412-0117286</h3>
+          <h3 className={styles.text} style={{color:"white", marginLeft:"10%"}}>Correo: angel.carrero@correo.unimet.edu.ve</h3>
         </section>
       </div>
     </>
