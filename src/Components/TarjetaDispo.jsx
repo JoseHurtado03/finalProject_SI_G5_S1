@@ -10,7 +10,7 @@ function GroupCard({ nombre, dispo }) {
   return (
     <div className={styles.carta} onClick={HandleClick}>
       <section className={styles.info}>
-        <div>{nombre}</div>
+        <div className={styles.text}>{nombre}</div>
         <div style={{ marginTop: "50px" }}>{dispo}/30 </div>
       </section>
       <img src={`/${nombre}.jpeg`} alt="club" />

@@ -53,3 +53,30 @@
   margin-left: 20px;
   font-size: 50px;
 }
+
+.mode {
+  margin: 20px;
+  margin-left: 60px;
+  height: 186px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #afafaf;
+  padding: 17px;
+  color: #fff;
+  box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 230px;
+  height: 27px;
+  flex-shrink: 0;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.gruposFiltro {
+  display: flex;
+  flex-direction: row;
+}

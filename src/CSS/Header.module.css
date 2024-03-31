@@ -22,6 +22,14 @@
   margin-right: 120px;
 }
 
+.logout {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f6821f;
+  box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 .logo {
   background-image: url("../../public/Logo.png");
   background-size: cover;

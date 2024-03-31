@@ -8,6 +8,7 @@ function Header({ user }) {
   const navigate = useNavigate();
   const handleLogout = () => {
     singOut();
+    window.location.reload();
   };
 
   return (
@@ -30,7 +31,9 @@ function Header({ user }) {
           <Link to={"/PefilUsuario"} className={styles.text}>
             Perfil
           </Link>
-          <button onClick={handleLogout}>Log Out</button>
+          <button className={styles.logout} onClick={handleLogout}>
+            Log Out
+          </button>
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>

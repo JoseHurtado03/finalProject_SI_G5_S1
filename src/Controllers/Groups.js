@@ -17,21 +17,6 @@ export async function createGroup(nombre, mision, vision, tipo) {
   await setDoc(userCollection, usuario);
 }
 
-export async function getGrupos() {
-  const groupsCollection = collection(db, "Grupos");
-  const groupsDocs = await getDocs(groupsCollection);
-
-  const grupos = groupsDocs.docs.map((doc) => ({
-    nombre: doc.id,
-    mision: doc.data().Mision,
-    vision: doc.data().Vision,
-    Comentarios: doc.data().Comentarios,
-    Integrantes: doc.data().Integrantes,
-  }));
-
-  return grupos;
-}
-
 export async function quitarPersonaGrupo(correo, id) {
   const userDoc = await getDoc(doc(db, "Grupos", `${id}`));
   const userRef = doc(db, "Grupos", `${id}`);
@@ -100,6 +85,35 @@ export async function buscarGrupo(nombre) {
 
   console.log(grupo);
   return grupo;
+}
+
+export async function getGrupos() {
+  const groupsCollection = collection(db, "Grupos");
+  const groupsDocs = await getDocs(groupsCollection);
+
+  const grupos = groupsDocs.docs.map((doc) => ({
+    nombre: doc.id,
+    mision: doc.data().Mision,
+    vision: doc.data().Vision,
+    Comentarios: doc.data().Comentarios,
+    Integrantes: doc.data().Integrantes,
+  }));
+
+  return grupos;
+}
+
+export async function getGruposbyType(type) {
+  const groupsCollections = collection(db, "Grupos");
+  const groupDocs = await getDocs(groupsCollections);
+  const groups = groupDocs.docs
+    .map((doc) => ({
+      nombre: doc.id,
+      Integrantes: doc.data().Integrantes,
+      Tipo: doc.data().Tipo,
+    }))
+    .filter((group) => group.Tipo.toLowerCase() === type.toLowerCase());
+  console.log(groups);
+  return groups;
 }
 
 export async function AgregarPersona(id, email) {
