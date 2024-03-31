@@ -11,19 +11,14 @@ export function UserContextProvider({ children }) {
     const [isLoadingUserData, setIsLoadingUserData] = useState(false);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            if (user) {
+        const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
+            if (authUser) {
                 setIsLoadingUserData(true);
                 try {
-                    const userRef = doc(db, "Usuarios", user.uid);
-                    
-                    console.log(userRef,"wew")
+                    const userRef = doc(db, "Usuarios", authUser.uid);
                     const userDoc = await getDoc(userRef);
                     if (userDoc.exists) {
-                        
-                    console.log(userDoc,"wew2")
                         setUserData(userDoc.data());
-                        console.log(userDoc.data(),"userdata se supone");
                     } else {
                         console.log("No se encontraron datos para el usuario en Firestore.");
                     }
@@ -31,13 +26,14 @@ export function UserContextProvider({ children }) {
                     console.error("Error al obtener datos del usuario:", error);
                 }
                 setIsLoadingUserData(false);
+            } else {
+                setUserData(null); // Si no hay usuario autenticado, resetea los datos del usuario
             }
-        };
+        });
 
-        fetchUserData();
-    }, [user]);
-    console.log(userData,"hola")
-    console.log(user,"sesupone usuario")
+        return () => unsubscribe(); // Limpia el listener cuando el componente se desmonta
+    }, []);
+    
     return (
         <UserContext.Provider
             value={{
