@@ -3,6 +3,7 @@ import styles from "../CSS/TarjetaDispo.module.css";
 
 function GroupCard({ nombre, dispo }) {
   const navigate = useNavigate();
+  const noSpacesString = nombre.replace(/\s/g, "");
   const HandleClick = () => {
     navigate(`/GroupPage/${nombre}`);
   };
@@ -13,7 +14,7 @@ function GroupCard({ nombre, dispo }) {
         <div className={styles.text}>{nombre}</div>
         <div style={{ marginTop: "50px" }}>{dispo}/30 </div>
       </section>
-      <img src={`/${nombre}.jpeg`} alt="club" />
+      <img src={`/${noSpacesString}.jpeg`} alt="club" />
     </div>
   );
 }
