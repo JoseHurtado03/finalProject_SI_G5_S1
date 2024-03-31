@@ -5,10 +5,34 @@ import { buscarGrupo } from '../Controllers/Groups';
 import styles from '../CSS/HomePage.module.css'
 import Header from '../Components/Header';
 import { useUserContext } from "../context/user";
-//import GroupCarousel from '../Components/GroupCarousel';
+
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+// npm install react-multi-carousel --save
+
 function MainPage() {
     const grupos= useGrupos()
     const {user} = useUserContext();
+
+    const responsive = {
+      superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+      }
+    };
 
   return (
     <>
@@ -24,17 +48,30 @@ function MainPage() {
     "Cargando"
     )}
         </div>  */}
+
+      
+{grupos? (
+          
+          
+          <Carousel responsive={responsive}>
+
+            
+           {grupos.map((group,index)=>(
+                  
+                      <GroupCard key={index} nombre={group.nombre} mision={group.mision} vision={group.vision}></GroupCard>
+                  
+          ))}
+          </Carousel>
+         
+          
+      ):(
+          <div>cargando...</div>
+      )
+      }
+
+
         <div style={{display:'flex', flexDirection:"row"}}>
-        {grupos? (
-            grupos.map((group,index)=>(
-                    <div key={index}>
-                        <GroupCard key={index} nombre={group.nombre} mision={group.mision} vision={group.vision}></GroupCard>
-                    </div>   
-            ))
-        ):(
-            "Cargando"
-        )
-        }
+        
         </div> 
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFAA2A'}}>
           <section>
