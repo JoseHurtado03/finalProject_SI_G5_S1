@@ -84,3 +84,10 @@
     padding: 0;
 
 }
+
+.text {
+    font-family: "Average Sans";
+    font-size: 25px;
+    display: flex;
+    text-align: left;
+}

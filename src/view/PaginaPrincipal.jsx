@@ -1,31 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import GroupCard from '../Components/TarjetaGrupo'
 import useGrupos from '../CustomHooks/useGroups'
 import { buscarGrupo } from '../Controllers/Groups';
 import styles from '../CSS/HomePage.module.css'
 import Header from '../Components/Header';
 import { useUserContext } from "../context/user";
-import { useNavigate } from 'react-router-dom';
+//import GroupCarousel from '../Components/GroupCarousel';
 
 function MainPage() {
-    const navigate = useNavigate();
     const grupos= useGrupos()
     const {user} = useUserContext();
-
-
-
-
-    
 
   return (
     <>
       <div>
-
-        <Header user={user}></Header>
-
         <section>
-          <h1 className={styles.mainTitle}>¿Buscas formar parte de alguna agrupación estudiantil? ¡MetroGroups es para ti!</h1>
+          <h1 className={styles.mainTitle}>¿Buscas formar parte de alguna agrupación estudiantil?
+          ¡MetroGroups es para ti!</h1>
         </section>
+        {/* Funcion que no sirve del carrusel */}
+        {/* <div style={{display:'flex', flexDirection:"row"}}>
+      {grupos ? (<GroupCarousel grupos={grupos} />) : (
+    "Cargando"
+    )}
+        </div>  */}
         <div style={{display:'flex', flexDirection:"row"}}>
         {grupos? (
             grupos.map((group,index)=>(
@@ -37,7 +35,7 @@ function MainPage() {
             "Cargando"
         )
         }
-        </div>
+        </div> 
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFAA2A'}}>
           <section>
             <h2 className={styles.valueTitle}>Visión</h2>
@@ -67,6 +65,11 @@ function MainPage() {
             <h2 className={styles.subTitle}>Te proporcionamos una plataforma para que tengas dónde escoger</h2>
             <h3 className={styles.info}>Puedes escoger entre 36 agrupaciones estudiantiles</h3>
           </section>
+        </section>
+        <section>
+        <h2 className={styles.subTitle}>Información de Contacto:</h2>
+        <h3 className={styles.text}>Telefono: 0412-0117286</h3>
+        <h3 className={styles.text}>Correo: angel.carrero@correo.unimet.edu.ve</h3>
         </section>
       </div>
     </>
