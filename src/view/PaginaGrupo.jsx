@@ -114,11 +114,11 @@ function GroupPage() {
           </section>
           <section>
             <section className={styles.mission}>
-              <h2>Mision</h2>
+              <h2>Misión</h2>
               <div>{grupo.Mision} </div>
             </section>
             <section className={styles.vision}>
-              <h2>Vision</h2>
+              <h2>Visión</h2>
               <div>{grupo.Vision} </div>
             </section>
           </section>

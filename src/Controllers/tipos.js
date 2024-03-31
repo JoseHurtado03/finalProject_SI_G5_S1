@@ -41,3 +41,15 @@ export async function buscarTipos(){
 
     
   };
+
+  export async function eliminarTipo(tipo) {
+    const grupoDoc = await getDoc(doc(db, "Tipos", "Tipos"));
+    const tipos = grupoDoc.data().Tipos;
+  
+    const tiposFiltrados = tipos.filter((t) => t !== tipo);
+  
+    const tipoRef = doc(db, "Tipos", "Tipos");
+    await updateDoc(tipoRef, {
+      Tipos: tiposFiltrados
+    });
+  }

@@ -2,7 +2,7 @@ import useGrupos from "../CustomHooks/useGroups";
 import EliminarGrupo from "../Components/TarjetaEliminarGrupo";
 import { useEffect, useState } from "react";
 import { createGroup } from "../Controllers/Groups";
-import { buscarTipos, agregarTipos } from "../Controllers/tipos";
+import { buscarTipos, agregarTipos, eliminarTipo } from "../Controllers/tipos";
 import styles from "../CSS/Admin.module.css";
 import GroupCard from "../Components/TarjetaGrupo";
 
@@ -26,15 +26,16 @@ export default function Admin() {
     };
     cargarTipos();
   }, []);
-  const handleAgregarTipo = () => {
+  const handleAgregarTipo = async () => {
     const type = tipo;
-    const types = tipos;
-    setTipo("");
-    agregarTipos(type);
     if (!tipos.includes(type)) {
-      setTipos(types);
+      await agregarTipos(type);
+      const updatedTipos = await buscarTipos();
+      setTipos(updatedTipos);
+    } else {
+      console.log('El tipo ya existe');
     }
-    window.location.reload();
+    setTipo('');
   };
   return (
     <div>
@@ -108,33 +109,73 @@ export default function Admin() {
       </section>
       <section style={{ backgroundColor: "#FFE9D0" }}>
         <h2 className={styles.subTitle}>Tipos de Grupos</h2>
-
-        <section>
-          <input
-            value={tipo}
-            onChange={(e) => setTipo(e.target.value)}
-            className={styles.input}
-            placeholder="Tipo"
-          ></input>
-          <button
-            className={styles.createB}
-            style={{
-              width: "175.2px",
-              height: "76.476px",
-              fontSize: "25.281px",
-            }}
-            onClick={() => {
-              handleAgregarTipo(tipo);
-            }}
-          >
-            Crear
-          </button>
-        </section>
-        <section className={styles.groups}>
-          {tipos
-            ? tipos.map((tipo, index) => <div key={index}>{tipos[index]}</div>)
-            : "cargando.."}
-        </section>
+        <section style={{ display: "flex", flexDirection: "row"}}>
+			<section>
+        	  <section style={{ display: "flex", flexDirection: "row"}}>
+        	    <input
+        	      value={tipo}
+        	      onChange={(e) => setTipo(e.target.value)}
+        	      className={styles.input}
+        	      style={{width:'400px'}}
+        	      placeholder="Tipo"
+        	    ></input>
+        	    <button
+        	      className={styles.createB}
+        	      style={{
+        	        width: "170px",
+        	        height: "76.476px",
+        	        fontSize: "25.281px",
+        	      }}
+        	      onClick={() => {
+        	        if (tipo === "") {
+        	          alert("Debe ingresar un nombre de tipo para crearlo");
+        	        } else {
+        	          handleAgregarTipo(tipo);
+        	        }
+        	      }}
+        	    >
+        	      Crear
+        	    </button>
+        	  </section>
+        	  <section className={styles.groups}>
+        	    {tipos
+        	      ? tipos.map((tipo, index) => <div key={index}>{tipos[index]}</div>)
+        	      : "cargando.."}
+        	  </section>
+        	</section>
+        	<section>
+        	    <select
+        	      className={styles.input}
+        	      value={tipoSeleccionado}
+				  style={{width: '400px'}}
+        	      onChange={(e) => setTipoSeleccionado(e.target.value)}
+        	    >
+        	      <option value="" style={{ color: "#BCBCBC" }}>
+        	        Tipo de Grupo
+        	      </option>
+        	      {tipos &&
+        	        tipos.map((tipo, index) => (
+        	          <option key={index} value={tipo}>
+        	            {tipo}
+        	          </option>
+        	        ))}
+        	    </select>
+				<button
+  				  className={styles.deleteB}
+  				  onClick={() => {
+  				    eliminarTipo(tipoSeleccionado);
+  				    // Actualizar la lista de tipos después de eliminar el tipo
+  				    const updatedTipos = tipos.filter(
+  				      (tipo) => tipo !== tipoSeleccionado
+  				    );
+  				    setTipos(updatedTipos);
+  				    // Reiniciar la selección de tipo
+  				    setTipoSeleccionado("");
+  		
+  				  }}
+  				>Borrar Tipo de Grupo</button>
+        	</section>
+		</section>
       </section>
       <section style={{ backgroundColor: "#FFAA2A" }}>
         <h2 className={styles.subTitle}>Grupos Disponibles</h2>

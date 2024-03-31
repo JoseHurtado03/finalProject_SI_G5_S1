@@ -60,3 +60,12 @@
     margin-left: 30px;
     margin-top: 20px
 }
+
+.deleteB{
+    width: 126px;
+    height: 55px;
+    border-radius: 10px;
+    background: #F44;
+    box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 70px;
+}
