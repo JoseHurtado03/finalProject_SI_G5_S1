@@ -1,14 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import GroupCard from '../Components/TarjetaGrupo'
 import useGrupos from '../CustomHooks/useGroups'
 import { buscarGrupo } from '../Controllers/Groups';
 import styles from '../CSS/HomePage.module.css'
 import Header from '../Components/Header';
 import { useUserContext } from "../context/user";
+import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
+    const navigate = useNavigate();
     const grupos= useGrupos()
     const {user} = useUserContext();
+
+
+
+
+    
 
   return (
     <>
