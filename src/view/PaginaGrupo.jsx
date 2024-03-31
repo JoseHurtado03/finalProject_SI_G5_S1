@@ -18,6 +18,7 @@ import { getPicNName } from "../Controllers/Groups";
 
 function GroupPage() {
   const params = useParams();
+  const noSpacesString = params.id.replace(/\s/g, "");
   const grupo = useGrupo(params.id);
   const { user, userData } = useUserContext();
 
@@ -110,7 +111,11 @@ function GroupPage() {
         >
           <section>
             <h1 className={styles.mainTitle}>{params.id}</h1>
-            <img className={styles.img} src={`/${params.id}.jpeg`} alt="club" />
+            <img
+              className={styles.img}
+              src={`/${noSpacesString}.jpeg`}
+              alt="club"
+            />
           </section>
           <section>
             <section className={styles.mission}>

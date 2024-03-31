@@ -3,11 +3,10 @@
   text-align: center;
   text-shadow: 10.006px 10.006px 4.003px rgba(255, 255, 255, 0.25);
   font-family: "Kdam Thmor";
-  font-size: 100px;
+  font-size: 120px;
   font-style: normal;
   font-weight: 400;
   line-height: 186.172px; /* 155.143% */
-  margin-left: 70px;
 }
 
 .mission {
@@ -28,6 +27,7 @@
   border-radius: 274.113px 274.113px 155.331px 0px;
   background: no-repeat;
   object-fit: cover;
+  box-shadow: -30px 20px 4px 0px #fc7b32;
 }
 
 .vision {
