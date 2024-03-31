@@ -186,7 +186,7 @@ export default function Admin() {
         	          </option>
         	        ))}
         	    </select>
-				<button
+				  <button
   				  className={styles.deleteB}
   				  onClick={handleEliminarTipo}
   				>Borrar Tipo de Grupo</button>
