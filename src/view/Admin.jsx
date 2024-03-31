@@ -1,7 +1,8 @@
 import useGrupos from '../CustomHooks/useGroups'
 import EliminarGrupo from '../Components/TarjetaEliminarGrupo'; 
 import { useEffect, useState } from 'react';
-import { createGroup,buscarTipos } from '../Controllers/Groups';
+import { createGroup } from '../Controllers/Groups';
+import { buscarTipos,agregarTipos } from '../Controllers/tipos';
 import styles from '../CSS/Admin.module.css'
 import GroupCard from '../Components/TarjetaGrupo'
 
@@ -12,6 +13,7 @@ export default function Admin() {
     const[mision,setMision]=useState()
     const[vision,setVision]=useState()
     const[tipos,setTipos]=useState()
+    const[tipo,setTipo]=useState()
     const crearGrupo=()=>{
 
         createGroup(nombre,mision,vision)
@@ -28,7 +30,17 @@ export default function Admin() {
       cargarTipos()
       
     },[])
+    const handleAgrefarTipo=()=>{
+      const type=tipo
+      const types=tipos
+      setTipo("")
+      agregarTipos(type)
+      if(!tipos.includes(type)){
+        setTipos(types)
+      }
+      window.location.reload();
 
+    }
     return (
        <div>
             <h1 className={styles.mainTitle}>Administrador</h1>
@@ -85,8 +97,13 @@ export default function Admin() {
 
               <section>
                 
-                <input className={styles.input} placeholder='Nombre del tipo de grupo'></input>
-                <button className={styles.createB} style={{width: '175.2px', height:'76.476px', fontSize: '25.281px'}}>Crear</button>
+              <input
+          value={tipo}
+          onChange={(e) => setTipo(e.target.value)}
+          className={styles.input}
+          placeholder="Tipo"
+        ></input>
+                <button className={styles.createB} style={{width: '175.2px', height:'76.476px', fontSize: '25.281px'}} onClick={()=>{handleAgrefarTipo(tipo)}}>Crear</button>
               </section>
               <section className={styles.groups}>
 

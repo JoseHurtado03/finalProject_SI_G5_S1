@@ -134,14 +134,7 @@ export async function DeleteGrupo(id) {
 
 
 
-export async function buscarTipos(){
-  const grupoDoc = await getDoc(doc(db, "Tipos", `Tipos`));
-  const tipos=grupoDoc.data().Tipos
-  
-  console.log(tipos)
-  // doc.data() is never undefined for query doc snapshots
-  return tipos
-};
+
 
 
 
