@@ -7,7 +7,7 @@ import {
   updateDoc,
   deleteDoc,
   setDoc,
-  where
+  where,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -145,11 +145,3 @@ export async function AgregarComentarioGrupo(id, comentario) {
 export async function DeleteGrupo(id) {
   await deleteDoc(doc(db, "Grupos", `${id}`));
 }
-
-
-
-
-
-
-
-
