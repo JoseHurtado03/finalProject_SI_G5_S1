@@ -10,6 +10,8 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { getImage } from "./files";
+import { getUsuario } from "./usuario";
 
 export async function createGroup(Nombre, Mision, Vision, Tipo) {
   console.log("se creo");
@@ -123,6 +125,25 @@ export async function getGruposbyType(type) {
     }))
     .filter((group) => group.Tipo.toLowerCase() === type.toLowerCase());
   console.log(groups);
+  return groups;
+}
+
+export async function getPicNName(id) {
+  const GroupDoc = await getDoc(doc(db, "Grupos", `${id}`));
+  const group = GroupDoc.data();
+  const groupMembers = group.Integrantes;
+  const groups = await Promise.all(
+    groupMembers.map(async (member) => {
+      const user = await getUsuario(member);
+      console.log("El user es :", user);
+      console.log("El email es:", user.email);
+      const pic = await getImage(user.email);
+      return {
+        nombre: user.Nombre,
+        pic: pic,
+      };
+    })
+  );
   return groups;
 }
 
