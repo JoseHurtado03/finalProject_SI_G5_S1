@@ -6,7 +6,6 @@ import styles from '../CSS/HomePage.module.css'
 import Header from '../Components/Header';
 import { useUserContext } from "../context/user";
 //import GroupCarousel from '../Components/GroupCarousel';
-
 function MainPage() {
     const grupos= useGrupos()
     const {user} = useUserContext();
