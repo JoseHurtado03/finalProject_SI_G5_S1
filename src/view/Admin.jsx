@@ -8,14 +8,14 @@ import GroupCard from "../Components/TarjetaGrupo";
 
 export default function Admin() {
   const grupos = useGrupos();
-  const [nombre, setNombre] = useState();
-  const [mision, setMision] = useState();
-  const [vision, setVision] = useState();
+  const [Nombre, setNombre] = useState();
+  const [Mision, setMision] = useState();
+  const [Vision, setVision] = useState();
   const [tipos, setTipos] = useState();
   const [tipo, setTipo] = useState();
   const [tipoSeleccionado, setTipoSeleccionado] = useState();
   const crearGrupo = () => {
-    createGroup(nombre, mision, vision);
+    createGroup(Nombre, Mision, Vision, tipoSeleccionado);
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Admin() {
     };
     cargarTipos();
   }, []);
-  const handleAgrefarTipo = () => {
+  const handleAgregarTipo = () => {
     const type = tipo;
     const types = tipos;
     setTipo("");
@@ -50,21 +50,21 @@ export default function Admin() {
         >
           <section style={{ display: "flex", flexDirection: "column" }}>
             <input
-              value={nombre}
+              value={Nombre}
               onChange={(e) => setNombre(e.target.value)}
               className={styles.input}
               placeholder="Nombre"
             ></input>
 
             <input
-              value={mision}
+              value={Mision}
               onChange={(e) => setMision(e.target.value)}
               className={styles.input}
               placeholder="Misión"
             ></input>
 
             <input
-              value={vision}
+              value={Vision}
               onChange={(e) => setVision(e.target.value)}
               className={styles.input}
               placeholder="Visión"
@@ -124,7 +124,7 @@ export default function Admin() {
               fontSize: "25.281px",
             }}
             onClick={() => {
-              handleAgrefarTipo(tipo);
+              handleAgregarTipo(tipo);
             }}
           >
             Crear

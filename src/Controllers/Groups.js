@@ -11,11 +11,20 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 
-export async function createGroup(nombre, mision, vision, tipo) {
+export async function createGroup(Nombre, Mision, Vision, Tipo) {
   console.log("se creo");
-  const userCollection = doc(collection(db, "Grupos"), nombre);
-  const usuario = { nombre, mision, vision, Integrantes: [], Comentarios: [] };
+  const userCollection = doc(collection(db, "Grupos"), Nombre);
+  const usuario = {
+    Nombre,
+    Mision,
+    Vision,
+    Integrantes: [],
+    Comentarios: [],
+    Tipo,
+  };
   await setDoc(userCollection, usuario);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  window.location.reload();
 }
 
 export async function quitarPersonaGrupo(correo, id) {
@@ -144,4 +153,6 @@ export async function AgregarComentarioGrupo(id, comentario) {
 
 export async function DeleteGrupo(id) {
   await deleteDoc(doc(db, "Grupos", `${id}`));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  window.location.reload();
 }
