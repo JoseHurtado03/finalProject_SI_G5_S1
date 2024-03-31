@@ -107,6 +107,7 @@ export async function getGrupos() {
     vision: doc.data().Vision,
     Comentarios: doc.data().Comentarios,
     Integrantes: doc.data().Integrantes,
+    Tipo: doc.data().Tipo
   }));
 
   return grupos;
