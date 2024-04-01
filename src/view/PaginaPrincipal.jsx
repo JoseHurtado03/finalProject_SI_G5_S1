@@ -5,10 +5,34 @@ import { buscarGrupo } from '../Controllers/Groups';
 import styles from '../CSS/HomePage.module.css'
 import Header from '../Components/Header';
 import { useUserContext } from "../context/user";
-//import GroupCarousel from '../Components/GroupCarousel';
+
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+// npm install react-multi-carousel --save
+
 function MainPage() {
     const grupos= useGrupos()
     const {user} = useUserContext();
+
+    const responsive = {
+      superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+      }
+    };
 
   return (
     <>
@@ -24,17 +48,30 @@ function MainPage() {
     "Cargando"
     )}
         </div>  */}
+
+      
+{grupos? (
+          
+          
+          <Carousel responsive={responsive}>
+
+            
+           {grupos.map((group,index)=>(
+                  
+                      <GroupCard key={index} nombre={group.nombre} mision={group.mision} vision={group.vision}></GroupCard>
+                  
+          ))}
+          </Carousel>
+         
+          
+      ):(
+          <div>cargando...</div>
+      )
+      }
+
+
         <div style={{display:'flex', flexDirection:"row"}}>
-        {grupos? (
-            grupos.map((group,index)=>(
-                    <div key={index}>
-                        <GroupCard key={index} nombre={group.nombre} mision={group.mision} vision={group.vision}></GroupCard>
-                    </div>   
-            ))
-        ):(
-            "Cargando"
-        )
-        }
+        
         </div> 
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFAA2A'}}>
           <section>
@@ -46,7 +83,7 @@ function MainPage() {
           <img src={'/Logo.png'} alt="club" className={styles.foto}/>
         </section>
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FFE9D0'}}>
-          <section className={styles.foto}></section>
+          <section className={styles.foto_Agrupacion2}></section>
           <section>
             <h2 className={styles.subTitle}>¡Todas tienen algo distinto que ofrecerte!</h2>
             <h3 className={styles.info}>¡Contamos con información completa y actualizada de las agrupaciones para que puedas escoger la que más te guste!</h3>
@@ -57,7 +94,7 @@ function MainPage() {
             <h2 className={styles.subTitle}>Te proporcionamos una herramienta a la palma de tu mano</h2>
             <h3 className={styles.info}>¡Somos un recurso indispensable para la selección de tus grupos favoritos!</h3>
           </section>
-          <section className={styles.foto}></section>
+          <section className={styles.foto_Agrupacion}></section>
         </section>
         <section style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor:'#F90'}}>
           <section className={styles.foto}></section>
@@ -67,9 +104,9 @@ function MainPage() {
           </section>
         </section>
         <section style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', backgroundColor:'black'}}>
-          <h2 className={styles.subTitle} style={{fontSize:"30px", color: "white", height:"20px"}}>Información de Contacto:</h2>
-          <h3 className={styles.text} style={{color:"white", marginLeft:"10px"}}>Teléfono: (+58)412-0117286</h3>
-          <h3 className={styles.text} style={{color:"white", marginLeft:"10px"}}>Correo: angel.carrero@correo.unimet.edu.ve</h3>
+          <h2 className={styles.subTitle} style={{fontSize:"30px", color: "white", height:"20px", marginLeft:"10%"}}>Información de Contacto:</h2>
+          <h3 className={styles.text} style={{color:"white", marginLeft:"10%", marginTop:"10%"}}>Teléfono: (+58)412-0117286</h3>
+          <h3 className={styles.text} style={{color:"white", marginLeft:"10%"}}>Correo: angel.carrero@correo.unimet.edu.ve</h3>
         </section>
       </div>
     </>

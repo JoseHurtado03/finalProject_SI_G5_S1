@@ -2,6 +2,15 @@ body {
   margin: 0px;
 }
 
+@media (max-width: 700px) {
+  .rightImg {
+    display: none;
+  }
+  /* .content {
+      font-size: 0.7rem;
+    } */
+}
+
 .mainTitle {
   color: #000;
   font-family: Inter;
@@ -88,4 +97,16 @@ body {
   background-size: cover;
   flex: 1;
   background-position: left;
+}
+
+/* RESPONSIVE */
+/* Telefono SmarthPhone Android Large ---> 360px x 800px*/
+@media (min-width: 360px) and (max-width: 1439px) {
+  .mainTitle {
+    font-size: 20px;
+  }
+
+  .input {
+    height: 20px;
+  }
 }

@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { createGroup } from "../Controllers/Groups";
 import { buscarTipos, agregarTipos, eliminarTipo } from "../Controllers/tipos";
 import styles from "../CSS/Admin.module.css";
-import GroupCard from "../Components/TarjetaGrupo";
+import { singOut } from "../Controllers/auth";
+import { useNavigate, Link } from "react-router-dom";
+import TarjetaDispo from "../Components/TarjetaDispo";
 
 export default function Admin() {
   const grupos = useGrupos();
@@ -14,6 +16,12 @@ export default function Admin() {
   const [tipos, setTipos] = useState();
   const [tipo, setTipo] = useState();
   const [tipoSeleccionado, setTipoSeleccionado] = useState();
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    singOut();
+    navigate("/");
+  };
   const crearGrupo = () => {
     createGroup(Nombre, Mision, Vision, tipoSeleccionado);
   };
@@ -37,9 +45,27 @@ export default function Admin() {
     }
     setTipo('');
   };
+
+  const handleEliminarTipo = async () => {
+    const gruposAsociados = grupos.filter(grupo => grupo.Tipo === tipoSeleccionado);
+    console.log(grupos)
+    console.log(gruposAsociados)
+    if (gruposAsociados.length > 0) {
+      alert("Hay grupos asociados a este tipo. No se puede eliminar.");
+    } else {
+      eliminarTipo(tipoSeleccionado);
+      const updatedTipos = tipos.filter(t => t !== tipoSeleccionado);
+      setTipos(updatedTipos);
+      setTipoSeleccionado("");
+    }
+  };
+
   return (
     <div>
-      <h1 className={styles.mainTitle}>Administrador</h1>
+      <section>
+        <h1 className={styles.mainTitle}>Administrador</h1>
+        <Link to={"/"} onClick={handleLogout}>LogOut</Link>
+      </section>
       <section style={{ backgroundColor: "#F90" }}>
         <h2 className={styles.subTitle}>Crear Grupos</h2>
         <div
@@ -160,35 +186,23 @@ export default function Admin() {
         	          </option>
         	        ))}
         	    </select>
-				<button
+				  <button
   				  className={styles.deleteB}
-  				  onClick={() => {
-  				    eliminarTipo(tipoSeleccionado);
-  				    // Actualizar la lista de tipos después de eliminar el tipo
-  				    const updatedTipos = tipos.filter(
-  				      (tipo) => tipo !== tipoSeleccionado
-  				    );
-  				    setTipos(updatedTipos);
-  				    // Reiniciar la selección de tipo
-  				    setTipoSeleccionado("");
-  		
-  				  }}
+  				  onClick={handleEliminarTipo}
   				>Borrar Tipo de Grupo</button>
         	</section>
-		</section>
+		  </section>
       </section>
-      <section style={{ backgroundColor: "#FFAA2A" }}>
+      <section style={{ backgroundColor: "#FFAA2A"}}>
         <h2 className={styles.subTitle}>Grupos Disponibles</h2>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ display: "flex", flexDirection: "row"}}>
           {grupos
             ? grupos.map((group, index) => (
                 <div key={index}>
-                  <GroupCard
-                    key={index}
+                  <TarjetaDispo
                     nombre={group.nombre}
-                    mision={group.mision}
-                    vision={group.vision}
-                  ></GroupCard>
+                    dispo={group.dispo}
+                  ></TarjetaDispo>
                 </div>
               ))
             : "Cargando"}
