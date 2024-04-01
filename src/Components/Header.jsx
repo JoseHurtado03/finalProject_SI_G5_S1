@@ -14,7 +14,7 @@ function Header({ user }) {
   return (
     <header className={styles.header}>
       {user ? (
-        <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+        <div className={styles.main}>
           <Link to={"/"} className={styles.logo}></Link>
           <Link to={"/"} className={styles.text}>
             Inicio
@@ -36,7 +36,7 @@ function Header({ user }) {
           </button>
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+        <div className={styles.main}>
           <Link to={"/"} className={styles.logo}></Link>
           <Link to={"/"} className={styles.text}>
             Inicio

@@ -10,6 +10,18 @@
   align-items: center;
 }
 
+.main {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+@media screen and (max-widht: 266px) {
+  .text {
+    margin-right: 10px;
+  }
+}
+
 .text {
   color: #000;
   font-family: Inter;

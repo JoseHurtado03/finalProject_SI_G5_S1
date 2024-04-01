@@ -102,13 +102,7 @@ function GroupPage() {
     <div style={{ backgroundColor: "#FF8F50" }}>
       <Header user={user}></Header>
       {grupo ? (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
+        <div className={styles.groupInfo}>
           <section>
             <h1 className={styles.mainTitle}>{params.id}</h1>
             <img

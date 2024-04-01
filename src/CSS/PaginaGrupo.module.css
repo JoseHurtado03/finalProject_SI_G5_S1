@@ -7,6 +7,13 @@
   font-style: normal;
   font-weight: 400;
   line-height: 186.172px; /* 155.143% */
+  margin-bottom: -10px;
+}
+
+.groupInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .mission {
@@ -28,6 +35,7 @@
   background: no-repeat;
   object-fit: cover;
   box-shadow: -30px 20px 4px 0px #fc7b32;
+  margin-bottom: 50px;
 }
 
 .vision {
@@ -48,14 +56,14 @@
   filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
   background-color: #ff7600;
   border-radius: 50px;
-  font-size: 70px;
+  font-size: 50px;
   color: #ffffff;
   margin: -40px 20px 0 20px;
 }
 
 .sendButton {
-  width: 87px;
-  height: 80px;
+  width: 100px;
+  height: 70px;
   border-radius: 0px 30px 30px 0px;
   background: #367cff;
   box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
@@ -63,8 +71,8 @@
 }
 
 .inputMsg {
-  width: 272px;
-  height: 78px;
+  width: 200px;
+  height: 70px;
   border-radius: 30px 0px 0px 30px;
   background: #fff;
   box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
@@ -102,3 +110,16 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+/* Responsive
+/* Teléfono SmartPhone Android Large ---> 300px × 800px */
+@media (min-width: 360px) and (max-width: 800px) {
+  .groupInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+/* Tablet ¡Pad Pro 11" 830px x 1190px*/
+@media (min-width: 830px) and (max-width: 1190px);
