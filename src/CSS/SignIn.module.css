@@ -90,14 +90,74 @@ body {
   background-position: left;
 }
 
+.enlace {
+  font-size: 20px;
+}
+
 /* RESPONSIVE */
-/* Telefono SmarthPhone Android Large ---> 360px x 800px*/
-@media (min-width: 360px) and (max-width: 1439px) {
+/* Telefono SmarthPhone Android Large ---> 300px x 800px*/
+@media (min-width: 300px) and (max-width: 800px) {
   .mainTitle {
     font-size: 20px;
+    margin-left: -120px;
   }
 
   .input {
-    height: 20px;
+    height: 10px;
+    width: 150px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    margin-left: -120px;
+  }
+
+  .mainButton {
+    width: 260px;
+    margin-left: -70px;
+    font-size: 20px;
+  }
+
+  .Google {
+    width: 260px;
+    margin-left: -70px;
+    font-size: 20px;
+  }
+
+  .enlace {
+    font-size: 15px;
+    margin-left: -40px;
+  }
+}
+
+/* Tablet ¡Pad Pro 11" 830px x 1190px*/
+@media (min-width: 830px) and (max-width: 1190px) {
+  .mainTitle {
+    font-size: 40px;
+  }
+
+  .input {
+    height: 60px;
+    width: 300px;
+    margin-bottom: 20px;
+    font-size: 25px;
+  }
+
+  .rightImg {
+    background-image: none;
+  }
+
+  .mainButton {
+    width: 600px;
+
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+
+  .Google {
+    width: 600px;
+    font-size: 35px;
+  }
+
+  .enlace {
+    font-size: 30px;
   }
 }

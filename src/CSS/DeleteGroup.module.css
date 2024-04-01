@@ -27,3 +27,33 @@
     box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: 70px;
 }
+
+/* RESPONSIVE */
+/* Telefono SmarthPhone Android Large ---> 300px x 800px*/
+@media (min-width: 300px) and (max-width: 800px){
+    .card{
+        width: 150px;
+        height: 100px;
+        margin-bottom: 30px;
+    }
+
+    .nameGroup{
+        font-size: 15px;
+        font-weight: 0px;
+    }
+
+    .deleteB{
+        width: 80px;
+        height: 30px;
+        margin-top: -40px;
+    }
+
+    /* Tablet ¡Pad Pro 11" 830px x 1190px*/ 
+@media (min-width: 830px) and (max-width: 1190px){
+    .card{
+        width: 600px;
+        height: 400px;
+        margin-bottom: 20px;
+    }
+}
+}

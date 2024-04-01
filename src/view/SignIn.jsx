@@ -202,7 +202,7 @@ export default function Sign() {
           <img src="/Google.png" alt="club" />
           Registrate con Google
         </button>
-        <Link to={"/Login"} style={{ marginTop: "20px" }}>
+        <Link to={"/Login"} style={{ marginTop: "20px" }} className={styles.enlace}>
           ¿Ya tienes una cuenta? Inicia sesión
         </Link>
       </section>
