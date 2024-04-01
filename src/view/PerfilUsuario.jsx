@@ -18,9 +18,9 @@ export default function PerfilUsuario() {
         navigate("/Admin");
       }}}, [userData, navigate]);
       useEffect(() => {
-        if (!userData) {
+        if (!user) {
             navigate("/");
-          }}, [userData, navigate]);
+          }}, [user, navigate]);
 
   const [Nombre,setNombre]= useState("")
   const [Apellido,setApellido]= useState("")
