@@ -149,7 +149,8 @@ await updateDoc(userRef, {
   Nombre: Nombref,
   Apellido:Apellidof
 
-});
+})
+window.location.reload();;
 }
 
 export async function cambiarGrupo(uid, id) {

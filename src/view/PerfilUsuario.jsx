@@ -7,9 +7,20 @@ import { useState,useEffect } from 'react'
 import {cambiarInfoUsuario} from "../Controllers/usuario"
 import QuitGroup from '../Components/QuitGroup';
 import {uploadImage,getImage} from "../Controllers/files"
+import { useNavigate } from 'react-router-dom';
+
 export default function PerfilUsuario() {
   const {user, userData} = useUserContext();
-  
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (userData) {
+      if (userData.role == "admin") {
+        navigate("/Admin");
+      }}}, [userData, navigate]);
+      useEffect(() => {
+        if (!userData) {
+            navigate("/");
+          }}, [userData, navigate]);
 
   const [Nombre,setNombre]= useState("")
   const [Apellido,setApellido]= useState("")
