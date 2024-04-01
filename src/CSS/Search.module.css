@@ -83,8 +83,8 @@
 
 /* RESPONSIVE */
 /* Telefono SmarthPhone Android Large ---> 360px x 800px*/
-@media (min-width: 360px) and (max-width: 1439px){
-  .title{
+@media (min-width: 360px) and (max-width: 1439px) {
+  .title {
     width: 500px;
     height: 100px;
     font-size: 40px;
@@ -92,31 +92,31 @@
     margin-bottom: 100px;
   }
 
-  .cuadrito{
+  .cuadrito {
     height: 80px;
     width: 350px;
     margin-left: 150px;
   }
 
-  .input{
+  .input {
     height: 60px;
     width: 330px;
     font-size: 20px;
   }
 
-  .boton{
+  .boton {
     height: 80px;
     width: 90px;
   }
 
-  .gruposFiltro{
+  .gruposFiltro {
     flex-direction: column;
   }
 }
 
-/* Tablet ¡Pad Pro 11" 830px x 1190px*/ 
-@media (min-width: 830px) and (max-width: 1439px){
-  .title{
+/* Tablet ¡Pad Pro 11" 830px x 1190px*/
+@media (min-width: 830px) and (max-width: 1439px) {
+  .title {
     width: 500px;
     height: 100px;
     font-size: 40px;
@@ -124,13 +124,13 @@
     margin-bottom: 150px;
   }
 
-  .cuadrito{
+  .cuadrito {
     height: 80px;
     width: 500px;
     margin-left: 10px;
   }
 
-  .input{
+  .input {
     height: 60px;
     width: 470px;
     font-size: 30px;

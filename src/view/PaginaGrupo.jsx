@@ -99,7 +99,7 @@ function GroupPage() {
   }, [grupo]);
 
   return (
-    <div style={{ backgroundColor: "#FF8F50" }}>
+    <div className={styles.everything}>
       <Header user={user}></Header>
       {grupo ? (
         <div className={styles.groupInfo}>

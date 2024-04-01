@@ -2,15 +2,6 @@ body {
   margin: 0px;
 }
 
-@media (max-width: 700px) {
-  .rightImg {
-    display: none;
-  }
-  /* .content {
-      font-size: 0.7rem;
-    } */
-}
-
 .mainTitle {
   color: #000;
   font-family: Inter;
