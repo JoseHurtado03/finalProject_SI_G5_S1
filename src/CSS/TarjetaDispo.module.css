@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 340px;
+  width: 280px;
   height: 186px;
   flex-shrink: 0;
   border-radius: 30px;
@@ -43,4 +43,22 @@ img {
   display: flex;
   justify-content: right;
   object-fit: cover;
+}
+
+/* RESPONSIVE */
+/* Telefono SmarthPhone Android Large ---> 300px x 800px*/
+@media (min-width: 300px) and (max-width: 800px){
+  .carta{
+    width: 120px;
+  }
+
+  .text{
+    width: 80px;
+    font-size: 20px;
+  }
+
+  .img{
+    width: 80px;
+    height: 100px;
+  }
 }

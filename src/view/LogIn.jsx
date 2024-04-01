@@ -162,7 +162,7 @@ export default function Login() {
             Regresar
           </button>
         </section>
-        <Link to={"/SignIn"}>¿No tienes una cuenta? Regístrate</Link>
+        <Link to={"/SignIn"} className={styles.enlace}>¿No tienes una cuenta? Regístrate</Link>
       </section>
     </div>
   );

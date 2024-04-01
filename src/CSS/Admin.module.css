@@ -58,7 +58,10 @@
     border-radius: 30px;
     background: rgba(255, 131, 62, 0.76);
     margin-left: 30px;
-    margin-top: 20px
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .deleteB{
@@ -68,4 +71,116 @@
     background: #F44;
     box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.25);
     margin-left: 70px;
+}
+
+.section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.inputX{
+    width: 400px;
+    height: 66.65px;
+    flex-shrink: 0;
+    border-radius: 20.508px;
+    background: #FFF;
+    text-align: center;
+    font-family: "Kdam Thmor";
+    font-size: 20.508px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102.539px; /* 500% */
+    margin: 10px 20px 10px 50px;
+}
+
+.buttonX{
+    width: 170px;
+    height: 76.476px;
+    font-size: 26px;
+    border-radius: 22px;
+    background: #BDFF68;
+    box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-right: 350px;
+    margin-top: 80px;
+    color: #000;
+    text-align: center;
+    font-family: "Kdam Thmor";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102.539px; /* 256.348% */
+}
+
+/* RESPONSIVE */
+/* Telefono SmarthPhone Android Large ---> 300px x 800px*/
+@media (min-width: 300px) and (max-width: 800px){
+    .mainTitle{
+        font-size: 25px;
+    }
+
+    .subTitle{
+        font-size: 20px;
+    }
+
+    .input{
+        width: 250px;
+        height: 30px;
+        margin-left: 10px;
+        font-size: 15px;
+    }
+
+    .section{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .createB{
+        width: 120px;
+        height: 60px;
+        font-size: 20px;
+    }
+
+    .inputX{
+        width: 250px;
+        height: 30px;
+        margin-left: 10px;
+        font-size: 15px;
+    }
+
+    .buttonX{
+        width: 120px;
+        height: 60px;
+        font-size: 25px;
+        margin-left: -200px;
+    }
+}
+
+/* Tablet ¡Pad Pro 11" 830px x 1190px*/ 
+@media (min-width: 830px) and (max-width: 1190px){
+    .mainTitle{
+        font-size: 120px;
+    }
+
+    .subTitle{
+        font-size: 60px;
+    }
+
+    .input{
+        width: 800px;
+        height: 80px;
+        font-size: 50px;
+    }
+
+    .inputX{
+        width: 800px;
+        height: 80px;
+        font-size: 50px;
+    }
+
+    .section{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    
 }

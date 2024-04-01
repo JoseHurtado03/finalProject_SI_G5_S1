@@ -70,21 +70,6 @@
   background-position: right;
 }
 
-/* .homeButton {
-  width: 170px;
-  height: 41.366px;
-  border-radius: 10px;
-  background: #f6821f;
-  box-shadow: 8px 10px 4px 0px rgba(0, 0, 0, 0.25);
-  color: #000;
-  font-family: Inter;
-  font-size: 15.61px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 40px;
-} */
-
 .homeButton {
   height: 50px;
   display: flex;
@@ -138,5 +123,101 @@
     width: 30px;
     height: 30px;
     margin-right: 10px;
+  }
+
+  .enlace{
+    font-size: 20px
+  }
+}
+
+/* RESPONSIVE */
+/* Telefono SmarthPhone Android Large ---> 300px x 800px*/
+@media (min-width: 300px) and (max-width: 800px){
+  .mainTitle{
+    font-size: 20px;
+    margin-left: -90px;
+  }
+
+  .input{
+    height: 10px;
+    width: 160px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    margin-left: -90px;
+  }
+
+  .mainButton{
+    width: 200px;
+    font-size: 15px;
+    margin-left: -90px;
+  }
+
+  .Google{
+    width: 200px;
+    font-size: 15px;
+    margin-left: -90px;
+  }
+
+  .homeButton{
+    width: 200px;
+    font-size: 15px;
+    margin-left: -90px;
+  }
+
+  .leftImg{
+    background-image: none;
+  }
+}
+
+.enlace{
+  font-size: 15px;
+  margin-left: -30px;
+}
+
+/* Tablet ¡Pad Pro 11" 830px x 1190px*/ 
+@media (min-width: 830px) and (max-width: 1190px){
+  .leftImg{
+    background-image: none;
+    width: 0px;
+    height: 0px;
+  }
+
+  .mainTitle{
+    margin-left: -500px;
+  }
+
+  .input{
+    width: 600px;
+    height: 60px;
+    margin-left: -500px;
+    margin-bottom: 40px;
+    margin-right: 20px;
+    font-size: 30px;
+    
+  }
+
+  .mainButton{
+    height: 60px;
+    margin-left: -500px;
+    margin-bottom: 40px;
+    font-size: 30px;
+  }
+
+  .Google{
+    height: 60px;
+    margin-left: -500px;
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+
+  .homeButton{
+    height: 60px;
+    margin-left: -500px;
+    font-size: 30px;
+  }
+
+  .enlace{
+    font-size: 30px;
+    margin-left: -500px;
   }
 }

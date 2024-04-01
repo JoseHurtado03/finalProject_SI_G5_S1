@@ -69,11 +69,7 @@ export default function Admin() {
       <section style={{ backgroundColor: "#F90" }}>
         <h2 className={styles.subTitle}>Crear Grupos</h2>
         <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
+          className={styles.section}
         >
           <section style={{ display: "flex", flexDirection: "column" }}>
             <input
@@ -120,7 +116,7 @@ export default function Admin() {
       </section>
       <section>
         <h2 className={styles.subTitle}>Eliminar grupos</h2>
-        <section style={{ display: "flex", flexDirection: "row" }}>
+        <section className={styles.section}>
           {grupos
             ? grupos.map((group, index) => (
                 <div key={index}>
@@ -135,23 +131,17 @@ export default function Admin() {
       </section>
       <section style={{ backgroundColor: "#FFE9D0" }}>
         <h2 className={styles.subTitle}>Tipos de Grupos</h2>
-        <section style={{ display: "flex", flexDirection: "row"}}>
+        <section className={styles.section}>
 			<section>
         	  <section style={{ display: "flex", flexDirection: "row"}}>
         	    <input
         	      value={tipo}
         	      onChange={(e) => setTipo(e.target.value)}
-        	      className={styles.input}
-        	      style={{width:'400px'}}
+        	      className={styles.inputX}
         	      placeholder="Tipo"
         	    ></input>
         	    <button
-        	      className={styles.createB}
-        	      style={{
-        	        width: "170px",
-        	        height: "76.476px",
-        	        fontSize: "25.281px",
-        	      }}
+        	      className={styles.buttonX}
         	      onClick={() => {
         	        if (tipo === "") {
         	          alert("Debe ingresar un nombre de tipo para crearlo");
@@ -171,9 +161,8 @@ export default function Admin() {
         	</section>
         	<section>
         	    <select
-        	      className={styles.input}
+        	      className={styles.inputX}
         	      value={tipoSeleccionado}
-				  style={{width: '400px'}}
         	      onChange={(e) => setTipoSeleccionado(e.target.value)}
         	    >
         	      <option value="" style={{ color: "#BCBCBC" }}>
@@ -195,7 +184,7 @@ export default function Admin() {
       </section>
       <section style={{ backgroundColor: "#FFAA2A"}}>
         <h2 className={styles.subTitle}>Grupos Disponibles</h2>
-        <div style={{ display: "flex", flexDirection: "row"}}>
+        <div className={styles.section}>
           {grupos
             ? grupos.map((group, index) => (
                 <div key={index}>
