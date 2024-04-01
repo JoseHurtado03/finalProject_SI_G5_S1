@@ -7,6 +7,7 @@ import styles from "../CSS/Admin.module.css";
 import { singOut } from "../Controllers/auth";
 import { useNavigate, Link } from "react-router-dom";
 import TarjetaDispo from "../Components/TarjetaDispo";
+import { useUserContext } from "../context/user";
 
 export default function Admin() {
   const grupos = useGrupos();
@@ -17,7 +18,18 @@ export default function Admin() {
   const [tipo, setTipo] = useState();
   const [tipoSeleccionado, setTipoSeleccionado] = useState();
   const navigate = useNavigate();
-  
+  const {userData} = useUserContext()
+
+  useEffect(() => {
+    if (userData) {
+      if (userData.role == "regular") {
+        navigate("/");
+      }}}, [userData, navigate]);
+      useEffect(() => {
+        if (!userData) {
+            navigate("/");
+          }}, [userData, navigate]);
+
   const handleLogout = () => {
     singOut();
     navigate("/");

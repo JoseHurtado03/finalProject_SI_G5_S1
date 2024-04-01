@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { validateAvailability } from "./Groups";
+import { uploadGeneric, uploadImage } from "./files";
 
 //Modificar usuario, buscar usuario.
 
@@ -36,6 +37,7 @@ export async function createUser(
     subscripciones: [],
   };
   await setDoc(userCollection, usuario);
+  await uploadGeneric(email)
 }
 
 export async function buscarUsuarioPorId(userId) {
@@ -149,7 +151,8 @@ await updateDoc(userRef, {
   Nombre: Nombref,
   Apellido:Apellidof
 
-});
+})
+window.location.reload();;
 }
 
 export async function cambiarGrupo(uid, id) {

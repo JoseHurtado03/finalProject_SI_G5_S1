@@ -42,7 +42,6 @@ export default function Sign() {
         role = "admin";
       }
       await createUser(name, lastName, username, email, password, role, uid);
-      navigate("/");
     } else {
       alert("Todos los campos son obligatorios");
     }

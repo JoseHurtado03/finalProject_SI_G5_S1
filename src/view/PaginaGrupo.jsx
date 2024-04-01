@@ -33,13 +33,13 @@ function GroupPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [members, setMembers] = useState([]);
 
-  const handleClick = () => {
+  const handleClick = () => {if (userData && (Comentario.trim() != "")){
     AgregarComentarioGrupo(params.id, {
       nombre: nombreUsuario,
       comentario: Comentario,
     });
     setComentario("");
-    Comentarios.push({ nombre: nombreUsuario, comentario: Comentario });
+    Comentarios.push({ nombre: nombreUsuario, comentario: Comentario });}
   };
 
   useEffect(() => {

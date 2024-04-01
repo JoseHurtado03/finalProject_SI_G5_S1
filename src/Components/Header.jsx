@@ -3,6 +3,7 @@ import styles from "../CSS/Header.module.css";
 import { useNavigate, Link } from "react-router-dom";
 
 import { singOut } from "../Controllers/auth";
+import { useUserContext } from "../context/user";
 
 function Header({ user }) {
   const navigate = useNavigate();
@@ -10,6 +11,12 @@ function Header({ user }) {
     singOut();
     window.location.reload();
   };
+  const {userData} = useUserContext()
+  useEffect(() => {
+    if (userData) {
+      if (userData.role == "admin") {
+        navigate("/Admin");
+      }}}, [userData, navigate]);
 
   return (
     <header className={styles.header}>
