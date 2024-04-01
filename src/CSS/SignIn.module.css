@@ -9,9 +9,6 @@ body {
   /* .content {
       font-size: 0.7rem;
     } */
-  body {
-    background-image: url("https://www.unimet.edu.ve/wp-content/uploads/2023/11/FOTOS-CAMPUS-2023-26-1024x683.jpg");
-  }
 }
 
 .mainTitle {
@@ -100,4 +97,16 @@ body {
   background-size: cover;
   flex: 1;
   background-position: left;
+}
+
+/* RESPONSIVE */
+/* Telefono SmarthPhone Android Large ---> 360px x 800px*/
+@media (min-width: 360px) and (max-width: 1439px){
+  .mainTitle{
+    font-size: 20px;
+  }
+
+  .input{
+    height: 20px;
+  }
 }
